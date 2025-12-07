@@ -25,6 +25,10 @@
 *.pem
 .history/
 
+# design files
+*.psd
+*.ai
+
 # debug
 npm-debug.log*
 yarn-debug.log*
