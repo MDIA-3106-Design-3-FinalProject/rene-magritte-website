@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# René Magritte - Interactive Website
 
-## Getting Started
+An interactive digital publication exploring the life, work, and artistic legacy of the Belgian surrealist painter René Magritte. This project serves as an educational and informative website designed for web browsers, featuring immersive animations, interactive elements, and a carefully crafted visual style inspired by Magritte's iconic surrealist aesthetic.
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This project is part of **MDIA 3106 Design 3 - Digital Design and Development - BCIT** designed by **Bruna Guarizo and Cesaria Monforte**.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Requirements
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+-   **Minimum 12-15 pages** with varying content and length (excluding cover and back matter)
+-   **At least 3 interactive elements per content page**, including:
+    -   Animations
+    -   Sound effects
+    -   Video content
+    -   Playful interactive elements
+    -   Interactive states
+    -   Game-like elements
+-   **Intuitive navigation** between pages, content, and states
+-   **Custom assets & visual style** with a cohesive design system
+-   **No dummy text** - all content must be meaningful and educational
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Technical Requirements
 
-## Learn More
+-   **Target Platform**: Web browsers (desktop or iPad landscape orientation)
+-   **Screen Resolution**: Optimized for desktop or iPad (1024×768px or 2048×1536px retina)
+-   **Responsive Design**: Adaptable to different screen sizes while maintaining design integrity
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-   **Animated Welcome Page**: Surrealist-inspired loading screen with floating elements
+-   **Interactive Navigation**: Intuitive page transitions and state management
+-   **Rich Media Integration**: Images, animations, and interactive elements
+-   **Responsive Design**: Optimized for various screen sizes
+-   **Performance Optimized**: Next.js Image optimization and code splitting
