@@ -64,10 +64,10 @@
     animation: fadeInLogo 1.2s ease-in-out 1.5s forwards;
 }
 
-.logo {
+/* .logo {
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.4));
     height: auto;
-}
+} */
 
 .buttonContainer {
     position: absolute;
