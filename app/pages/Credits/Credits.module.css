@@ -29,6 +29,24 @@
     z-index: 10000;
 }
 
+/* TEXTBOX STYLING  */
+.TextContainer {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 40%;
+    opacity: 0;
+    animation: fadeInText 1s ease-in-out 2.5s forwards;
+    z-index: 5000;
+}
+
+.TextItems {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 /* TIMELINE BAR STYLING */
 
 .Timeline {
@@ -133,5 +151,15 @@
         width: 80%;
         max-width: 400px;
         height: auto;
+    }
+}
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
     }
 }

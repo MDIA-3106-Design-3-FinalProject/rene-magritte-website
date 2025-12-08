@@ -1,10 +1,14 @@
 "use client";
+
+import styles from "./Credits.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import styles from "./Credits.module.css";
+
+// COMPONENTS
 import Button from "@/app/components/Button";
 import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
+import TextBox from "@/app/components/TextBox/TextBox";
 
 export default function Credits() {
     const router = useRouter();
@@ -19,6 +23,7 @@ export default function Credits() {
     return (
         <>
             <div className={styles.page}>
+                {/* Logo */}
                 <div className={styles.loadingContainer}>
                     <Image
                         src='/loading-page.png'
@@ -51,6 +56,34 @@ export default function Credits() {
                             height={300}
                             className={styles.appleImage}
                         />
+                    </div>
+
+                    <div className={styles.TextContainer}>
+                        <TextBox>
+                            <div className={styles.TextItems}>
+                                <h1>About</h1>
+                                <p>
+                                    This digital exhibition was created to
+                                    celebrate René Magritte’s art and philosophy
+                                    — a journey through mystery, memory, and
+                                    imagination.
+                                </p>
+                                <p>
+                                    It reflects how one artist used thought as
+                                    his medium and perception as his subject.
+                                </p>
+                                <p>
+                                    Like Magritte himself, this project invites
+                                    you to look — and then look again.
+                                </p>
+                            </div>
+                        </TextBox>
+                        <br />
+                        <TextBox>
+                            <div className={styles.TextItems}>
+                                <p>Galconda — 1953 </p>
+                            </div>
+                        </TextBox>
                     </div>
 
                     <div className={styles.buttonContainer}>
