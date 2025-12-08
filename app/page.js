@@ -62,7 +62,11 @@ export default function Home() {
 
                 {/* Start Button */}
                 <div className={styles.buttonContainer}>
-                    <Button onClick={handleStart}>START</Button>
+                    <Button
+                        type='regular'
+                        onClick={handleStart}>
+                        START
+                    </Button>
                 </div>
             </div>
         </div>
