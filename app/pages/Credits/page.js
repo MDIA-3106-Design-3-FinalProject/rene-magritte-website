@@ -61,34 +61,35 @@ export default function Credits() {
                     <div className={styles.TextContainer}>
                         <TextBox>
                             <div className={styles.TextItems}>
-                                <h1>About</h1>
+                                <h1>CREDITS</h1>
                                 <p>
-                                    This digital exhibition was created to
-                                    celebrate René Magritte’s art and philosophy
-                                    — a journey through mystery, memory, and
-                                    imagination.
+                                    Story and text inspired by the life and
+                                    works of René Magritte (1898–1967).
                                 </p>
                                 <p>
-                                    It reflects how one artist used thought as
-                                    his medium and perception as his subject.
+                                    Information adapted from renemagritte.org
+                                    and public museum archives for educational
+                                    storytelling.
                                 </p>
                                 <p>
-                                    Like Magritte himself, this project invites
-                                    you to look — and then look again.
+                                    This website was created by Bruna Guarizo
+                                    and Cesaria Monforte
                                 </p>
-                            </div>
-                        </TextBox>
-                        <br />
-                        <TextBox>
-                            <div className={styles.TextItems}>
-                                <p>Galconda — 1953 </p>
                             </div>
                         </TextBox>
                     </div>
 
                     <div className={styles.buttonContainer}>
-                        <Button onClick={handleStart}>BACK</Button>
-                        <Button onClick={handleStart}>NEXT</Button>
+                        <Button
+                            type='back'
+                            onClick={handleStart}>
+                            BACK
+                        </Button>
+                        <Button
+                            type='next'
+                            onClick={handleStart}>
+                            NEXT
+                        </Button>
                     </div>
                 </div>
             </div>

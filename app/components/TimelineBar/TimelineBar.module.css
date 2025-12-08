@@ -6,20 +6,18 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    padding: 16px 24px;
+    padding: var(--font-size-small) var(--font-size-medium); /* 16px 24px */
 }
 
 .timelineBar {
-    background-color: white;
-    /* background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); */
+    background-color: var(--background);
     border-radius: 50px;
-    padding: 12px 24px;
+    padding: var(--font-size-extra-small) var(--font-size-medium); /* 12px 24px */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    gap: var(--font-size-medium); /* 24px */
+    box-shadow: var(--shadow-default);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     position: relative;
@@ -47,15 +45,15 @@
     flex-direction: column;
     align-items: flex-start;
     min-width: 100px;
-    padding-right: 16px;
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    padding-right: var(--font-size-small); /* 16px */
+    border-right: 1px solid var(--grey-500);
 }
 
 .logoText {
     font-family: "Georgia", serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #ffffff;
+    font-size: var(--font-size-medium); /* 24px */
+    font-weight: var(--font-wregular); /* 400 */
+    color: var(--black-500);
     line-height: 1;
     margin-bottom: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -64,7 +62,7 @@
 .logoSubtext {
     font-family: "Georgia", serif;
     font-size: 11px;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--grey-500);
     letter-spacing: 1px;
     font-style: italic;
 }
@@ -73,28 +71,28 @@
 .yearContainer {
     flex: 1;
     display: flex;
-    gap: 12px;
+    gap: var(--font-size-extra-small); /* 12px */
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 0 16px;
+    padding: 0 var(--font-size-small); /* 16px */
 }
 
 /* Navigation Links */
 .navLinks {
     display: flex;
-    gap: 24px;
+    gap: var(--font-size-medium); /* 24px */
     align-items: center;
     min-width: 120px;
     justify-content: flex-end;
-    padding-left: 16px;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: var(--font-size-small); /* 16px */
+    border-left: 1px solid var(--grey-500);
 }
 
 .navLink {
     font-family: "Georgia", serif;
     font-size: 15px;
-    color: #1f2f45;
+    color: var(--dark-blue-500);
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
@@ -108,13 +106,13 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: #ffffff;
+    background: var(--light-blue-500);
     transition: width 0.3s ease;
 }
 
 .navLink:hover {
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    color: var(--light-blue-500);
+    text-shadow: 0 0 8px rgba(83, 153, 255, 0.5);
 }
 
 .navLink:hover::after {
@@ -124,56 +122,48 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
     .timelineBar {
-        padding: 10px 20px;
-        gap: 16px;
+        padding: 10px var(--font-size-regular); /* 10px 20px */
+        gap: var(--font-size-small); /* 16px */
     }
 
     .yearContainer {
-        gap: 8px;
-        padding: 0 12px;
-    }
-
-    .logoText {
-        font-size: 20px;
-    }
-
-    .logoSubtext {
-        font-size: 10px;
+        gap: var(--font-size-small);
+        padding: 0 var(--font-size-extra-small); /* 12px */
     }
 }
 
 @media (max-width: 768px) {
     .timelineContainer {
-        padding: 12px 16px;
+        padding: var(--font-size-extra-small) var(--font-size-small); /* 12px 16px */
     }
 
     .timelineBar {
         flex-direction: column;
-        border-radius: 24px;
-        padding: 16px;
-        gap: 16px;
+        border-radius: var(--font-size-medium); /* 24px */
+        padding: var(--font-size-small); /* 16px */
+        gap: var(--font-size-small); /* 16px */
     }
 
     .logo {
         border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid var(--grey-500);
         padding-right: 0;
-        padding-bottom: 12px;
+        padding-bottom: var(--font-size-extra-small);
         width: 100%;
         align-items: center;
     }
 
     .yearContainer {
         width: 100%;
-        padding: 12px 0;
+        padding: var(--font-size-extra-small) 0;
         justify-content: center;
     }
 
     .navLinks {
         border-left: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-top: 1px solid var(--grey-500);
         padding-left: 0;
-        padding-top: 12px;
+        padding-top: var(--font-size-extra-small);
         width: 100%;
         justify-content: center;
     }
@@ -181,11 +171,11 @@
 
 @media (max-width: 480px) {
     .yearContainer {
-        gap: 6px;
+        gap: var(--font-size-small);
     }
 
     .navLinks {
-        gap: 16px;
+        gap: var(--font-size-small);
     }
 
     .navLink {

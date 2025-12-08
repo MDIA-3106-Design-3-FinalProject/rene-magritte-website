@@ -22,3 +22,27 @@
     box-shadow: var(--shadow-active);
     transform: translateY(0);
 }
+
+.arrow {
+    fill: var(--dark-blue-500);
+}
+.arrow path {
+    fill: var(--dark-blue-500);
+}
+
+.buttonNav {
+    padding: 16px 48px;
+    border: none;
+    border-radius: 16px;
+    background: var(--off-white-500);
+    color: var(--dark-blue-500);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-semibold);
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    box-shadow: var(--shadow-default);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--font-size-small);
+}

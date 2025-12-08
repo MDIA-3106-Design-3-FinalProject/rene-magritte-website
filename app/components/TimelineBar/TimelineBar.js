@@ -3,8 +3,10 @@ import { useState } from "react";
 import YearButton from "../YearButton/YearButton";
 import styles from "./TimelineBar.module.css";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function TimelineBar({ onYearChange }) {
+    const router = useRouter();
     const [activeYear, setActiveYear] = useState(1898);
 
     const years = [1898, 1908, 1912, 1916, 1920, 1927, 1930, 1943, 1967];
@@ -14,6 +16,12 @@ export default function TimelineBar({ onYearChange }) {
         if (onYearChange) {
             onYearChange(year);
         }
+    };
+    const handleAbout = () => {
+        router.push("/pages/About");
+    };
+    const handleCredits = () => {
+        router.push("/pages/Credits");
     };
 
     return (
@@ -41,16 +49,16 @@ export default function TimelineBar({ onYearChange }) {
                 </div>
 
                 <div className={styles.navLinks}>
-                    <a
-                        href='#about'
+                    <p
+                        onClick={handleAbout}
                         className={styles.navLink}>
                         About
-                    </a>
-                    <a
-                        href='#credits'
+                    </p>
+                    <p
+                        onClick={handleCredits}
                         className={styles.navLink}>
                         Credits
-                    </a>
+                    </p>
                 </div>
             </div>
         </div>
