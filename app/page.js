@@ -13,7 +13,7 @@ export default function Home() {
 
     const handleStart = () => {
         console.log("Start button clicked");
-        router.push("/pages/Credits"); //navigate to credits
+        router.push("/pages/Home"); //navigate to home
     };
 
     return (

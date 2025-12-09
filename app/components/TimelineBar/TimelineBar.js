@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 export default function TimelineBar({ onYearChange }) {
     const router = useRouter();
-    const [activeYear, setActiveYear] = useState(1898);
+    const [activeYear, setActiveYear] = useState(null);
     const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
     const yearDropdownRef = useRef(null);
@@ -29,6 +29,10 @@ export default function TimelineBar({ onYearChange }) {
     const handleCredits = () => {
         router.push("/pages/Credits");
         setIsHamburgerOpen(false);
+    };
+
+    const handleLogoClick = () => {
+        router.push("/pages/Home");
     };
 
     // Close dropdowns when clicking outside
@@ -57,7 +61,10 @@ export default function TimelineBar({ onYearChange }) {
     return (
         <div className={styles.timelineContainer}>
             <div className={styles.timelineBar}>
-                <div className={styles.logo}>
+                <div 
+                    className={styles.logo}
+                    onClick={handleLogoClick}
+                    style={{ cursor: 'pointer' }}>
                     <Image
                         src='/logo.svg'
                         alt='Magritte Logo'
@@ -88,7 +95,7 @@ export default function TimelineBar({ onYearChange }) {
                         onClick={() =>
                             setIsYearDropdownOpen(!isYearDropdownOpen)
                         }>
-                        {activeYear}
+                        {activeYear || "Select Year"}
                         <svg
                             className={`${styles.dropdownArrow} ${
                                 isYearDropdownOpen ? styles.open : ""

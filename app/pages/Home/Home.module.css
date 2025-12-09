@@ -1,0 +1,278 @@
+.page {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--background);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.backgroundImage {
+    object-fit: cover;
+    z-index: 0;
+}
+
+.timelineWrapper {
+    position: relative;
+    z-index: 100000;
+}
+
+.renePortrait {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: auto;
+    height: 70vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.portraitImage {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom left;
+}
+
+.textContainer {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 40%;
+    max-width: 600px;
+    z-index: 5000;
+    transition: all 0.3s ease;
+    background: transparent !important;
+}
+
+.textContainer.minimized {
+    top: calc(var(--font-size-small) + 60px);
+    right: var(--font-size-medium);
+    transform: translateY(0);
+    width: auto;
+    max-width: 200px;
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.textContainer.minimized :global(.textbox) {
+    width: auto;
+    min-width: fit-content;
+}
+
+@media (max-width: 1024px) {
+    .textContainer.minimized {
+        top: calc(var(--font-size-small) + 60px);
+        right: var(--font-size-regular);
+    }
+}
+
+@media (max-width: 768px) {
+    .textContainer.minimized {
+        top: calc(var(--font-size-extra-small) + 60px);
+        right: var(--font-size-small);
+    }
+}
+
+.textContainer :global(.textbox) {
+    text-align: center;
+    padding: var(--font-size-medium);
+}
+
+.textContainer.minimized :global(.textbox) {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: var(--font-size-small) !important;
+}
+
+.textBoxWrapper :global(.textbox) {
+    transition: all 0.3s ease;
+}
+
+.minimizedWrapper :global(.textbox) {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.textItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-small);
+}
+
+.textItems h1 {
+    font-size: var(--font-size-large);
+    font-weight: var(--font-bold);
+    font-family: "Georgia", serif;
+    color: var(--dark-blue-500);
+    margin: 0;
+    margin-bottom: var(--font-size-small);
+}
+
+.textItems p {
+    font-size: var(--font-size-regular);
+    color: var(--dark-blue-500);
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+.golcondaButton {
+    margin-top: var(--font-size-small);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 100px;
+    background: var(--dark-blue-500);
+    color: var(--background);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-semibold);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    height: auto;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5001;
+    transition: all 0.3s ease;
+    padding: 4px;
+}
+
+.closeButton:hover {
+    opacity: 0.7;
+}
+
+.fullSizeButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 100px;
+    background: var(--dark-blue-500);
+    color: var(--background);
+    font-size: var(--font-size-extra-small);
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+    width: auto;
+    min-width: fit-content;
+    box-sizing: border-box;
+    white-space: nowrap;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonContainer {
+    position: absolute;
+    bottom: 5%;
+    width: calc(100% - 2 * var(--font-size-medium));
+    left: var(--font-size-medium);
+    right: var(--font-size-medium);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10000;
+}
+
+@media (max-width: 1024px) {
+    .buttonContainer {
+        width: calc(100% - 2 * var(--font-size-regular));
+        left: var(--font-size-regular);
+        right: var(--font-size-regular);
+    }
+}
+
+@media (max-width: 768px) {
+    .buttonContainer {
+        width: calc(100% - 2 * var(--font-size-small));
+        left: var(--font-size-small);
+        right: var(--font-size-small);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .textContainer {
+        right: var(--font-size-regular);
+        width: 45%;
+        max-width: 500px;
+    }
+
+    .textItems h1 {
+        font-size: var(--font-size-medium);
+    }
+
+    .textItems p {
+        font-size: var(--font-size-small);
+    }
+
+    .golcondaButton {
+        font-size: var(--font-size-extra-small);
+        padding: 10px 20px;
+    }
+
+    .textContainer.minimized {
+        right: var(--font-size-regular);
+    }
+}
+
+@media (max-width: 768px) {
+    .textContainer {
+        right: var(--font-size-small);
+        width: 90%;
+        max-width: none;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .textContainer :global(.textbox) {
+        padding: var(--font-size-small);
+    }
+
+    .textItems h1 {
+        font-size: var(--font-size-regular);
+        margin-bottom: var(--font-size-extra-small);
+    }
+
+    .textItems p {
+        font-size: var(--font-size-extra-small);
+        line-height: 1.5;
+    }
+
+    .golcondaButton {
+        font-size: var(--font-size-extra-small);
+        padding: 8px 16px;
+    }
+
+    .textContainer.minimized {
+        right: var(--font-size-small);
+        top: 80px;
+        max-width: 150px;
+    }
+
+    .textContainer.minimized :global(.textbox) {
+        background: transparent;
+        padding: var(--font-size-small);
+    }
+
+    .fullSizeButton {
+        font-size: var(--font-size-extra-small);
+        padding: 6px 12px;
+    }
+}

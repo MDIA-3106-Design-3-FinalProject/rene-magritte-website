@@ -1,9 +1,9 @@
 import styles from "./TextBox.module.css";
 
-export default function TextBox({ onClick, children }) {
+export default function TextBox({ onClick, children, transparent }) {
     return (
         <div
-            className={styles.textbox}
+            className={`${styles.textbox} ${transparent ? styles.transparent : ""}`}
             onClick={onClick}>
             {children}
         </div>
