@@ -40,7 +40,10 @@ export default function EarlyWork() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/ReturnToBelgium");
+        }, 600);
     };
 
     const handleMinimize = () => {
