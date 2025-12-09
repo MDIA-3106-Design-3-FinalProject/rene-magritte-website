@@ -4,10 +4,11 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
-import Button from "../components/Button";
+import Button from "@/app/components/Button/Button";
+import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import FramesGrid from "./FramesGrid";
 
-export default function Timeline() {
+export default function Room() {
     const router = useRouter();
     const [isDragging, setIsDragging] = useState(false);
     const [translateX, setTranslateX] = useState(0);
@@ -15,6 +16,10 @@ export default function Timeline() {
     const containerRef = useRef(null);
     const startXRef = useRef(0);
     const translateXRef = useRef(0);
+
+    const handleYearChange = (year) => {
+        console.log("Selected year:", year);
+    };
 
     useEffect(() => {
         translateXRef.current = translateX;
@@ -100,11 +105,16 @@ export default function Timeline() {
 
     return (
         <div
-            className={styles.timelineContainer}
+            className={styles.roomContainer}
             ref={containerRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}
             style={{ cursor: isDragging ? "grabbing" : "grab" }}>
+            {/* Timeline Bar */}
+            <div className={styles.timelineBarWrapper}>
+                <TimelineBar onYearChange={handleYearChange} />
+            </div>
+
             {/* Background Image Container */}
             <div
                 className={styles.backgroundWrapper}
@@ -135,11 +145,12 @@ export default function Timeline() {
 
             {/* Navigation Buttons */}
             <div className={styles.backButton}>
-                <Button onClick={handleBack}>BACK</Button>
+                <Button type="back" onClick={handleBack}>BACK</Button>
             </div>
             <div className={styles.nextButton}>
-                <Button onClick={handleNext}>NEXT</Button>
+                <Button type="next" onClick={handleNext}>NEXT</Button>
             </div>
         </div>
     );
 }
+
