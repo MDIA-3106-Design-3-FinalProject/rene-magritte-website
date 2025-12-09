@@ -10,6 +10,11 @@
     text-align: center;
 }
 
+.textbox.transparent {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
 .button:hover {
     background: var(--light-blue-100);
     box-shadow: var(--shadow-hover);
