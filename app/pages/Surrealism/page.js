@@ -28,7 +28,10 @@ export default function Surrealism() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/EarlyWork");
+        }, 600);
     };
 
     const handleMinimize = () => {
