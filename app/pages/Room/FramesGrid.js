@@ -7,7 +7,7 @@ export default function FramesGrid() {
             {/* Top Row - 5 frames */}
             <div
                 className={styles.frame}
-                style={{ top: "10%", left: "8%" }}>
+                style={{ top: "10%", left: "5%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -18,7 +18,7 @@ export default function FramesGrid() {
             </div>
             <div
                 className={styles.frame}
-                style={{ top: "10%", left: "22%" }}>
+                style={{ top: "10%", left: "17%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -29,7 +29,7 @@ export default function FramesGrid() {
             </div>
             <div
                 className={styles.frame}
-                style={{ top: "10%", left: "36%" }}>
+                style={{ top: "10%", left: "30%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -40,7 +40,7 @@ export default function FramesGrid() {
             </div>
             <div
                 className={styles.frame}
-                style={{ top: "10%", left: "50%" }}>
+                style={{ top: "10%", left: "60%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -51,7 +51,18 @@ export default function FramesGrid() {
             </div>
             <div
                 className={styles.frame}
-                style={{ top: "10%", left: "64%" }}>
+                style={{ top: "10%", left: "70%" }}>
+                <Image
+                    src='/frame.png'
+                    alt='Frame'
+                    width={180}
+                    height={220}
+                    className={styles.frameImage}
+                />
+            </div>
+            <div
+                className={styles.frame}
+                style={{ top: "10%", left: "80%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -64,7 +75,7 @@ export default function FramesGrid() {
             {/* Middle Row - 5 frames */}
             <div
                 className={styles.frame}
-                style={{ top: "38%", left: "8%" }}>
+                style={{ top: "38%", left: "5%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -75,29 +86,7 @@ export default function FramesGrid() {
             </div>
             <div
                 className={styles.frame}
-                style={{ top: "38%", left: "22%" }}>
-                <Image
-                    src='/frame.png'
-                    alt='Frame'
-                    width={180}
-                    height={220}
-                    className={styles.frameImage}
-                />
-            </div>
-            <div
-                className={styles.frame}
-                style={{ top: "32%", left: "38%" }}>
-                <Image
-                    src='/frame.png'
-                    alt='Frame'
-                    width={220}
-                    height={280}
-                    className={styles.frameImage}
-                />
-            </div>
-            <div
-                className={styles.frame}
-                style={{ top: "38%", left: "56%" }}>
+                style={{ top: "38%", left: "17%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -117,33 +106,9 @@ export default function FramesGrid() {
                     className={styles.frameImage}
                 />
             </div>
-
-            {/* Bottom Row - 3 frames */}
             <div
                 className={styles.frame}
-                style={{ top: "66%", left: "8%" }}>
-                <Image
-                    src='/frame.png'
-                    alt='Frame'
-                    width={180}
-                    height={220}
-                    className={styles.frameImage}
-                />
-            </div>
-            <div
-                className={styles.frame}
-                style={{ top: "66%", left: "22%" }}>
-                <Image
-                    src='/frame.png'
-                    alt='Frame'
-                    width={180}
-                    height={220}
-                    className={styles.frameImage}
-                />
-            </div>
-            <div
-                className={styles.frame}
-                style={{ top: "66%", left: "36%" }}>
+                style={{ top: "38%", left: "80%" }}>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -155,4 +120,3 @@ export default function FramesGrid() {
         </div>
     );
 }
-

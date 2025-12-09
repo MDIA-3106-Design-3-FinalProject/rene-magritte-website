@@ -25,29 +25,33 @@ export default function Room() {
         translateXRef.current = translateX;
     }, [translateX]);
 
-    // image width
+    // Calculate image width and set initial position
     useEffect(() => {
-        const calculateImageWidth = () => {
-            const viewportHeight = window.innerHeight;
-            const aspectRatio = 2.5;
-            const calculatedWidth = viewportHeight * aspectRatio;
-            setImageWidth(calculatedWidth);
+        const calculateImageWidthAndCenter = () => {
+            const img = new window.Image();
+            img.src = "/room.png";
+            img.onload = () => {
+                const aspectRatio = img.naturalWidth / img.naturalHeight;
+                const viewportHeight = window.innerHeight;
+                const viewportWidth = window.innerWidth;
+                const calculatedWidth = viewportHeight * aspectRatio;
+                setImageWidth(calculatedWidth);
+
+                // Center the image horizontally initially
+                if (calculatedWidth > viewportWidth) {
+                    const initialTranslateX =
+                        -(calculatedWidth - viewportWidth) / 2;
+                    setTranslateX(initialTranslateX);
+                } else {
+                    setTranslateX(0);
+                }
+            };
         };
 
-        calculateImageWidth();
-        window.addEventListener("resize", calculateImageWidth);
-        return () => window.removeEventListener("resize", calculateImageWidth);
-    }, []);
-
-    useEffect(() => {
-        const img = new window.Image();
-        img.src = "/room.png";
-        img.onload = () => {
-            const aspectRatio = img.naturalWidth / img.naturalHeight;
-            const viewportHeight = window.innerHeight;
-            const calculatedWidth = viewportHeight * aspectRatio;
-            setImageWidth(calculatedWidth);
-        };
+        calculateImageWidthAndCenter();
+        const handleResize = () => calculateImageWidthAndCenter();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     const handleBack = () => {
@@ -67,13 +71,15 @@ export default function Room() {
     const handleMouseMove = useCallback(
         (e) => {
             const x = e.clientX - startXRef.current;
-            // Limit movement: 0 (start) to the end of the image
-            const maxTranslate = 0;
             const viewportWidth = window.innerWidth;
-            // Calculate minimum limit based on the actual image width
+            // Calculate limits based on the actual image width
+            // maxTranslate: left edge of image aligns with left edge of viewport (no white space on left)
+            // minTranslate: right edge of image aligns with right edge of viewport (no white space on right)
+            const maxTranslate = 0;
             const minTranslate =
                 imageWidth > 0 ? -(imageWidth - viewportWidth) : -viewportWidth;
 
+            // Ensure we don't go beyond limits to prevent white space
             const newTranslateX = Math.max(
                 minTranslate,
                 Math.min(maxTranslate, x)
@@ -145,12 +151,19 @@ export default function Room() {
 
             {/* Navigation Buttons */}
             <div className={styles.backButton}>
-                <Button type="back" onClick={handleBack}>BACK</Button>
+                <Button
+                    type='back'
+                    onClick={handleBack}>
+                    BACK
+                </Button>
             </div>
             <div className={styles.nextButton}>
-                <Button type="next" onClick={handleNext}>NEXT</Button>
+                <Button
+                    type='next'
+                    onClick={handleNext}>
+                    NEXT
+                </Button>
             </div>
         </div>
     );
 }
-
