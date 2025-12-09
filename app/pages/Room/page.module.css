@@ -1,10 +1,18 @@
-.timelineContainer {
+.roomContainer {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     user-select: none;
     background: transparent;
+}
+
+.timelineBarWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100000;
 }
 
 /* Remove background branco do body nesta página */
@@ -29,8 +37,10 @@
     display: block;
     height: 100vh;
     width: auto;
-    object-fit: cover;
+    object-fit: contain;
     object-position: left center;
+    transform: scale(0.8);
+    transform-origin: left center;
 }
 
 .contentWrapper {
@@ -54,3 +64,4 @@
     right: 5%;
     z-index: 10;
 }
+
