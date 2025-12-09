@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 // COMPONENTS
-import Button from "@/app/components/Button";
+import Button from "@/app/components/Button/Button";
 import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 

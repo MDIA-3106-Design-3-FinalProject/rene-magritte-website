@@ -1,7 +1,7 @@
 .button {
     padding: 16px 48px;
     border: none;
-    border-radius: 16px;
+    border-radius: 100px;
     background: var(--off-white-500);
     color: var(--dark-blue-500);
     font-size: var(--font-size-small);
@@ -33,7 +33,7 @@
 .buttonNav {
     padding: 16px 48px;
     border: none;
-    border-radius: 16px;
+    border-radius: 100px;
     background: var(--off-white-500);
     color: var(--dark-blue-500);
     font-size: var(--font-size-small);
@@ -44,5 +44,8 @@
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--font-size-small);
+    min-width: 180px;
 }
+

@@ -5,14 +5,15 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 100000;
     padding: var(--font-size-small) var(--font-size-medium); /* 16px 24px */
+    overflow: visible;
 }
 
 .timelineBar {
     background-color: var(--background);
-    border-radius: 50px;
-    padding: var(--font-size-extra-small) var(--font-size-medium); /* 12px 24px */
+    border-radius: 100px;
+    padding: var(--font-size-small) var(--font-size-medium); /* 16px 24px */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -21,7 +22,6 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     position: relative;
-    overflow: hidden;
 }
 
 .timelineBar::before {
@@ -37,6 +37,8 @@
         rgba(255, 255, 255, 0.3),
         transparent
     );
+    pointer-events: none;
+    border-radius: 50px 50px 0 0;
 }
 
 /* Logo Section */
@@ -44,23 +46,24 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    padding: 0;
+    width: 100px;
     min-width: 100px;
-    padding-right: var(--font-size-small); /* 16px */
-    border-right: 1px solid var(--grey-500);
 }
 
 .logoText {
-    font-family: "Georgia", serif;
+    font-family: var(--font-open-sans), "Open Sans SemiCondensed", sans-serif;
     font-size: var(--font-size-medium); /* 24px */
     font-weight: var(--font-wregular); /* 400 */
     color: var(--black-500);
     line-height: 1;
     margin-bottom: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 0;
 }
 
 .logoSubtext {
-    font-family: "Georgia", serif;
+    font-family: var(--font-open-sans), "Open Sans SemiCondensed", sans-serif;
     font-size: 11px;
     color: var(--grey-500);
     letter-spacing: 1px;
@@ -78,19 +81,26 @@
     padding: 0 var(--font-size-small); /* 16px */
 }
 
+/* Right Side Wrapper */
+.rightSideWrapper {
+    width: 100px;
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 /* Navigation Links */
 .navLinks {
     display: flex;
     gap: var(--font-size-medium); /* 24px */
     align-items: center;
-    min-width: 120px;
     justify-content: flex-end;
-    padding-left: var(--font-size-small); /* 16px */
-    border-left: 1px solid var(--grey-500);
+    width: 100%;
 }
 
 .navLink {
-    font-family: "Georgia", serif;
+    font-family: var(--font-open-sans), "Open Sans SemiCondensed", sans-serif;
     font-size: 15px;
     color: var(--dark-blue-500);
     text-decoration: none;
@@ -119,16 +129,253 @@
     width: 100%;
 }
 
+/* Year Dropdown (Mobile/Tablet) */
+.yearDropdown {
+    display: none;
+    position: relative;
+    z-index: 100001;
+    isolation: isolate;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.yearDropdownButton {
+    display: flex;
+    align-items: center;
+    gap: var(--font-size-extra-small);
+    padding: 8px var(--font-size-small);
+    background: var(--off-white-500);
+    border: 2px solid var(--off-white-600);
+    border-radius: var(--font-size-regular);
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    font-weight: var(--font-semibold);
+    color: var(--dark-blue-500);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.yearDropdownButton:hover {
+    background: var(--background);
+    border-color: var(--background);
+}
+
+.dropdownArrow {
+    transition: transform 0.3s ease;
+}
+
+.dropdownArrow.open {
+    transform: rotate(180deg);
+}
+
+.yearDropdownMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--background);
+    border: 2px solid var(--off-white-600);
+    border-radius: var(--font-size-regular);
+    box-shadow: var(--shadow-default);
+    z-index: 100001;
+    height: auto;
+    min-height: 400px;
+    overflow-y: visible;
+    isolation: isolate;
+    box-sizing: border-box;
+}
+
+.yearDropdownItem {
+    display: block;
+    width: 100%;
+    padding: 12px var(--font-size-small);
+    text-align: left;
+    background: transparent;
+    border: none;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    font-weight: var(--font-semibold);
+    color: var(--dark-blue-500);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--off-white-600);
+}
+
+.yearDropdownItem:last-child {
+    border-bottom: none;
+}
+
+.yearDropdownItem:hover {
+    background: var(--off-white-500);
+    color: var(--light-blue-500);
+}
+
+.yearDropdownItem.active {
+    background: var(--dark-blue-500);
+    color: var(--background);
+    border-radius: var(--font-size-regular);
+}
+
+/* Hamburger Menu (Mobile/Tablet) */
+.hamburgerMenu {
+    display: none;
+    position: relative;
+    z-index: 100001;
+    isolation: isolate;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: var(--font-size-small); /* 16px */
+}
+
+.hamburgerButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburgerLine {
+    width: 100%;
+    height: 2px;
+    background: var(--dark-blue-500);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburgerButton:hover .hamburgerLine {
+    background: var(--light-blue-500);
+}
+
+.hamburgerLine.open:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.hamburgerLine.open:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburgerLine.open:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+.hamburgerDropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--background);
+    border: 2px solid var(--off-white-600);
+    border-radius: var(--font-size-regular);
+    box-shadow: var(--shadow-default);
+    z-index: 100001;
+    min-width: 150px;
+    isolation: isolate;
+    padding-top: var(--font-size-small);
+}
+
+.hamburgerCloseButton {
+    position: absolute;
+    top: var(--font-size-extra-small);
+    right: var(--font-size-extra-small);
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    z-index: 100002;
+}
+
+.hamburgerCloseButton:hover {
+    opacity: 0.7;
+}
+
+.hamburgerCloseIcon {
+    width: 16px;
+    height: 16px;
+    stroke: var(--dark-blue-500);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    color: var(--dark-blue-500);
+}
+
+.hamburgerCloseIcon path {
+    stroke: var(--dark-blue-500);
+}
+
+.hamburgerItem {
+    display: block;
+    width: 100%;
+    padding: 12px var(--font-size-small);
+    text-align: left;
+    background: transparent;
+    border: none;
+    font-family: var(--font-open-sans), "Open Sans SemiCondensed", sans-serif;
+    font-size: 15px;
+    color: var(--dark-blue-500);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--off-white-600);
+}
+
+.hamburgerItem:last-child {
+    border-bottom: none;
+}
+
+.hamburgerItem:hover {
+    background: var(--off-white-500);
+    color: var(--light-blue-500);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .timelineBar {
-        padding: 10px var(--font-size-regular); /* 10px 20px */
+        padding: var(--font-size-small) var(--font-size-regular); /* 16px 20px */
         gap: var(--font-size-small); /* 16px */
+        justify-content: space-between;
+        position: relative;
     }
 
     .yearContainer {
         gap: var(--font-size-small);
         padding: 0 var(--font-size-extra-small); /* 12px */
+    }
+
+    /* Show dropdown, hide desktop year container */
+    .yearContainer {
+        display: none;
+    }
+
+    .yearDropdown {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    /* Show hamburger, hide desktop nav links */
+    .navLinks {
+        display: none;
+    }
+
+    .hamburgerMenu {
+        display: flex;
     }
 }
 
@@ -138,47 +385,29 @@
     }
 
     .timelineBar {
-        flex-direction: column;
-        border-radius: var(--font-size-medium); /* 24px */
-        padding: var(--font-size-small); /* 16px */
+        border-radius: 100px;
+        padding: var(--font-size-small) var(--font-size-small); /* 16px 16px */
         gap: var(--font-size-small); /* 16px */
     }
 
     .logo {
         border-right: none;
-        border-bottom: 1px solid var(--grey-500);
-        padding-right: 0;
-        padding-bottom: var(--font-size-extra-small);
-        width: 100%;
-        align-items: center;
-    }
-
-    .yearContainer {
-        width: 100%;
-        padding: var(--font-size-extra-small) 0;
-        justify-content: center;
-    }
-
-    .navLinks {
-        border-left: none;
-        border-top: 1px solid var(--grey-500);
-        padding-left: 0;
-        padding-top: var(--font-size-extra-small);
-        width: 100%;
-        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
-    .yearContainer {
-        gap: var(--font-size-small);
+    .yearDropdownButton {
+        font-size: 12px;
+        padding: 6px var(--font-size-extra-small);
     }
 
-    .navLinks {
-        gap: var(--font-size-small);
+    .yearDropdownItem {
+        font-size: 12px;
+        padding: 10px var(--font-size-extra-small);
     }
 
-    .navLink {
+    .hamburgerItem {
         font-size: 14px;
+        padding: 10px var(--font-size-extra-small);
     }
 }

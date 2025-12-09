@@ -35,6 +35,7 @@ export default function Button({ type, onClick, children }) {
                 <button
                     className={styles.buttonNav}
                     onClick={onClick}>
+                    {children}
                     <svg
                         width='24'
                         height='24'
@@ -62,10 +63,9 @@ export default function Button({ type, onClick, children }) {
                             />
                         </g>
                     </svg>
-
-                    {children}
                 </button>
             )}
         </>
     );
 }
+
