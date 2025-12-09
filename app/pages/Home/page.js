@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./Home.module.css";
@@ -14,6 +14,7 @@ export default function Home() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [reneVisible, setReneVisible] = useState(false);
 
     const handleYearChange = (year) => {
         console.log("Selected year:", year);
@@ -42,6 +43,25 @@ export default function Home() {
         setIsMinimized(false);
     };
 
+    useEffect(() => {
+        // Show Rene image after 3 seconds
+        const reneTimer = setTimeout(() => {
+            setReneVisible(true);
+        }, 3000);
+
+        return () => {
+            clearTimeout(reneTimer);
+        };
+    }, []);
+
+    // Generate multiple men for raining effect
+    const menPositions = Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        left: `${(i * 3.33) % 100}%`,
+        delay: `${(i * 0.2) % 5}s`,
+        duration: `${3 + (i % 3)}s`,
+    }));
+
     return (
         <div className={styles.page}>
             {/* Transition overlay */}
@@ -54,12 +74,35 @@ export default function Home() {
                 }`}>
                 {/* Background Image - Golconda */}
                 <Image
-                    src='/Golconda.webp'
+                    src='/Golconda - no men.jpg'
                     alt='Golconda background'
                     fill
                     className={styles.backgroundImage}
                     priority
                 />
+
+                {/* Raining men */}
+                <div className={styles.rainingMen}>
+                    {menPositions.map((man) => (
+                        <div
+                            key={man.id}
+                            className={styles.man}
+                            style={{
+                                left: man.left,
+                                animationDelay: man.delay,
+                                animationDuration: man.duration,
+                            }}>
+                            <Image
+                                src='/man.png'
+                                alt='Falling man'
+                                width={60}
+                                height={80}
+                                className={styles.manImage}
+                                priority
+                            />
+                        </div>
+                    ))}
+                </div>
 
                 {/* Timeline Bar */}
                 <div className={styles.timelineWrapper}>
@@ -67,7 +110,7 @@ export default function Home() {
                 </div>
 
                 {/* René Magritte Portrait */}
-                <div className={styles.renePortrait}>
+                <div className={`${styles.renePortrait} ${reneVisible ? styles.reneVisible : ''}`}>
                     <Image
                         src='/Rene.png'
                         alt='René Magritte'

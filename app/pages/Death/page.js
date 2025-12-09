@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "@/app/pages/Death/Death.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -14,6 +14,9 @@ export default function Death() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [reneVisible, setReneVisible] = useState(false);
+    const [grayscaleActive, setGrayscaleActive] = useState(false);
+    const [rainStopped, setRainStopped] = useState(false);
 
     const handleYearChange = (year) => {
         console.log("Selected year:", year);
@@ -34,18 +37,73 @@ export default function Death() {
         setIsMinimized(false);
     };
 
+    useEffect(() => {
+        // Apply grayscale and stop rain after 15 seconds
+        const grayscaleTimer = setTimeout(() => {
+            setGrayscaleActive(true);
+            setRainStopped(true);
+            // Show Rene image at the end
+            setReneVisible(true);
+        }, 15000);
+
+        return () => {
+            clearTimeout(grayscaleTimer);
+        };
+    }, []);
+
+    // Generate multiple men for raining effect
+    const menPositions = Array.from({ length: 30 }, (_, i) => ({
+        id: i,
+        left: `${(i * 3.33) % 100}%`,
+        delay: `${(i * 0.2) % 5}s`,
+        duration: `${3 + (i % 3)}s`,
+    }));
+
     return (
         <>
             <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src='/Golconda.webp'
-                            alt='Magritte Legacy'
+                            src='/Golconda - no men.jpg'
+                            alt='Golconda background'
                             fill
-                            className={styles.backgroundImage}
+                            className={`${styles.backgroundImage} ${grayscaleActive ? styles.grayscale : ''}`}
                             priority
                         />
+                        {/* Raining men */}
+                        <div className={`${styles.rainingMen} ${rainStopped ? styles.rainStopped : ''}`}>
+                            {menPositions.map((man) => (
+                                <div
+                                    key={man.id}
+                                    className={styles.man}
+                                    style={{
+                                        left: man.left,
+                                        animationDelay: man.delay,
+                                        animationDuration: man.duration,
+                                    }}>
+                                    <Image
+                                        src='/man.png'
+                                        alt='Falling man'
+                                        width={60}
+                                        height={80}
+                                        className={styles.manImage}
+                                        priority
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                        {/* René Magritte portrait with fade */}
+                        <div className={`${styles.renePortrait} ${reneVisible ? styles.reneVisible : ''}`}>
+                            <Image
+                                src='/Rene.png'
+                                alt='René Magritte'
+                                width={400}
+                                height={600}
+                                className={styles.reneImage}
+                                priority
+                            />
+                        </div>
                     </div>
 
                     <div className={styles.Timeline}>
