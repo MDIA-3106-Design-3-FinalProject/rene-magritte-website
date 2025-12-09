@@ -109,10 +109,10 @@ export default function Seducer() {
                     {!showSea && (
                         <>
                             <div className={styles.Timeline}>
-                                <TimelineBar
-                                    onYearChange={handleYearChange}
-                                    initialYear={1908}
-                                />
+                        <TimelineBar
+                            onYearChange={handleYearChange}
+                            initialYear={1916}
+                        />
                             </div>
 
                             <div

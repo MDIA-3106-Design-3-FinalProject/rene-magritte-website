@@ -49,3 +49,14 @@
     min-width: 180px;
 }
 
+.buttonNav:hover {
+    background: var(--light-blue-100);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.buttonNav:active {
+    box-shadow: var(--shadow-active);
+    transform: translateY(0);
+}
+

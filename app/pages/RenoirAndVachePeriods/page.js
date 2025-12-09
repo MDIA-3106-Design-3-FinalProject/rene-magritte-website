@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/pages/EarlyCareer/EarlyCareer.module.css";
+import styles from "@/app/pages/RenoirAndVachePeriods/RenoirAndVachePeriods.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -11,17 +11,12 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Mes Reves", year: 1912, image: "/Mes Reves.jpg" },
-    { name: "Marche des Snobs", year: 1926, image: "/Marche des Snobs.webp" },
-    {
-        name: "Le tango des aveux",
-        year: 1925,
-        image: "/Le tango des aveux.jpg",
-    },
-    { name: "Landscape", year: 1926, image: "/Landscape.jpg" },
+    { name: "Forethought", year: 1943, image: "/Forethought.png" },
+    { name: "The Clearing", year: 1943, image: "/The Clearing.jpeg" },
+    { name: "Lyricism", year: 1943, image: "/Lyricism.jpg" },
 ];
 
-export default function EarlyCareer() {
+export default function RenoirAndVachePeriods() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
@@ -37,15 +32,15 @@ export default function EarlyCareer() {
     const handleBack = () => {
         setIsTransitioning(true);
         setTimeout(() => {
-            router.push("/pages/Seducer");
+            router.push("/pages/ReturnToBelgium");
         }, 600);
     };
 
     const handleNext = () => {
         setIsTransitioning(true);
         setTimeout(() => {
-            router.push("/pages/Surrealism");
-        }, 800);
+            router.push("/pages/RecognitionAndLegacy");
+        }, 600);
     };
 
     const handleMinimize = () => {
@@ -92,10 +87,7 @@ export default function EarlyCareer() {
 
     return (
         <>
-            <div
-                className={`${styles.page} ${
-                    isTransitioning ? styles.fadeOut : ""
-                }`}>
+            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         {isSliding && (
@@ -130,7 +122,7 @@ export default function EarlyCareer() {
                     <div className={styles.Timeline}>
                         <TimelineBar
                             onYearChange={handleYearChange}
-                            initialYear={1920}
+                            initialYear={1943}
                         />
                     </div>
 
@@ -186,19 +178,17 @@ export default function EarlyCareer() {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>Early Career</h1>
+                                        <h1>Renoir and Vache Periods</h1>
                                         <p>
-                                            In 1912, Magritte's mother
-                                            tragically took her own life by
-                                            drowning in the Sambre River. This
-                                            profound loss would deeply influence
-                                            his artistic vision.
+                                            During the 1940s, Magritte experimented
+                                            with different styles, including his
+                                            "Renoir Period" and "Vache Period,"
+                                            exploring new artistic directions.
                                         </p>
                                         <p>
-                                            The image of a veiled face, water,
-                                            and the mystery of what lies beneath
-                                            would become recurring themes in his
-                                            work.
+                                            These periods showcased his versatility
+                                            and willingness to challenge his own
+                                            artistic conventions.
                                         </p>
                                         <div className={styles.artworkCarousel}>
                                             <button
@@ -268,3 +258,4 @@ export default function EarlyCareer() {
         </>
     );
 }
+

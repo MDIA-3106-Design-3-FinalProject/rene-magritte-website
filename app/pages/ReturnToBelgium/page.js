@@ -39,7 +39,10 @@ export default function ReturnToBelgium() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/RenoirAndVachePeriods");
+        }, 600);
     };
 
     const handleMinimize = () => {

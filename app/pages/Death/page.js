@@ -1,7 +1,7 @@
 "use client";
 
-import styles from "@/app/pages/Surrealism/Surrealism.module.css";
-import { useState, useEffect } from "react";
+import styles from "@/app/pages/Death/Death.module.css";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -10,11 +10,10 @@ import Button from "@/app/components/Button/Button";
 import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
-export default function Surrealism() {
+export default function Death() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
-    const [contentVisible, setContentVisible] = useState(false);
 
     const handleYearChange = (year) => {
         console.log("Selected year:", year);
@@ -23,14 +22,7 @@ export default function Surrealism() {
     const handleBack = () => {
         setIsTransitioning(true);
         setTimeout(() => {
-            router.push("/pages/EarlyCareer");
-        }, 600);
-    };
-
-    const handleNext = () => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-            router.push("/pages/EarlyWork");
+            router.push("/pages/RecognitionAndLegacy");
         }, 600);
     };
 
@@ -42,26 +34,14 @@ export default function Surrealism() {
         setIsMinimized(false);
     };
 
-    useEffect(() => {
-        // Show content after curtains start opening
-        setTimeout(() => {
-            setContentVisible(true);
-        }, 800);
-    }, []);
-
     return (
         <>
             <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
-                {/* Dark fade overlay - curtain effect */}
-                <div className={styles.curtainLeft}></div>
-                <div className={styles.curtainRight}></div>
-
-                {/* Content - appears after fade */}
-                <div className={`${styles.loadingContainer} ${contentVisible ? styles.contentVisible : ''}`}>
+                <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src='/The lost jobey.webp'
-                            alt='The lost jobey'
+                            src='/Golconda.webp'
+                            alt='Magritte Legacy'
                             fill
                             className={styles.backgroundImage}
                             priority
@@ -71,7 +51,7 @@ export default function Surrealism() {
                     <div className={styles.Timeline}>
                         <TimelineBar
                             onYearChange={handleYearChange}
-                            initialYear={1926}
+                            initialYear={1967}
                         />
                     </div>
 
@@ -127,21 +107,18 @@ export default function Surrealism() {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>Surrealism</h1>
+                                        <h1>Death</h1>
                                         <p>
-                                            In 1925, Magritte moved to Brussels
-                                            and began creating works that would
-                                            define the Surrealist movement.
+                                            René Magritte passed away on August 15,
+                                            1967, in Brussels, leaving behind a
+                                            legacy that continues to inspire and
+                                            challenge our perception of reality.
                                         </p>
                                         <p>
-                                            His paintings challenged reality,
-                                            blending the ordinary with the
-                                            extraordinary in ways that continue
-                                            to captivate audiences today.
+                                            His surrealist vision remains one of the
+                                            most influential in modern art, forever
+                                            changing how we see the world around us.
                                         </p>
-                                        <button className={styles.artworkButton}>
-                                            The Lost Jockey — 1925
-                                        </button>
                                     </>
                                 )}
                             </div>
@@ -153,11 +130,6 @@ export default function Surrealism() {
                             type='back'
                             onClick={handleBack}>
                             BACK
-                        </Button>
-                        <Button
-                            type='next'
-                            onClick={handleNext}>
-                            NEXT
                         </Button>
                     </div>
                 </div>
