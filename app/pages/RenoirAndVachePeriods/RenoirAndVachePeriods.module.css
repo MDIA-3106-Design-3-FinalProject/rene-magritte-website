@@ -1,0 +1,342 @@
+.page {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--background) !important;
+    animation: fadeIn 0.8s ease-in-out forwards;
+    opacity: 0;
+}
+
+.page.fadeOut {
+    animation: fadeOut 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+:global(body),
+:global(html) {
+    background: var(--background) !important;
+}
+
+.loadingContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.imageWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: #000;
+}
+
+.backgroundImage {
+    object-fit: cover;
+    object-position: left center;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.backgroundImage.slideOutLeft {
+    animation: slideOutLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 1;
+}
+
+.backgroundImage.slideOutRight {
+    animation: slideOutRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 1;
+}
+
+.backgroundImage.slideInLeft {
+    animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 2;
+}
+
+.backgroundImage.slideInRight {
+    animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 2;
+}
+
+.backgroundImage.currentImage {
+    z-index: 1;
+    opacity: 1;
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(-100%);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.buttonContainer {
+    position: absolute;
+    bottom: 10%;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10000;
+}
+
+/* TEXTBOX STYLING  */
+.TextContainer {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 40%;
+    max-width: 600px;
+    z-index: 5000;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-extra-small);
+}
+
+.TextContainer.minimized {
+    top: calc(var(--font-size-small) + 60px);
+    right: var(--font-size-medium);
+    transform: translateY(0);
+    width: auto;
+    max-width: 200px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.TextContainer :global(.textbox) {
+    text-align: center;
+    padding: var(--font-size-medium);
+}
+
+.TextContainer.minimized :global(.textbox) {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: var(--font-size-small) !important;
+    width: auto;
+    min-width: fit-content;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5001;
+    transition: all 0.3s ease;
+}
+
+.fullSizeButton {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 100px;
+    background: var(--dark-blue-500);
+    color: var(--background);
+    font-size: var(--font-size-extra-small);
+    font-weight: var(--font-semibold);
+    cursor: pointer;
+    width: auto;
+    min-width: fit-content;
+    box-sizing: border-box;
+    white-space: nowrap;
+    text-decoration: none;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.TextItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-small); /* 16px */
+}
+
+.TextItems h1 {
+    font-family: "Georgia", serif;
+    font-size: var(--font-size-large);
+    font-weight: var(--font-bold);
+    color: var(--dark-blue-500);
+    margin: 0;
+    margin-bottom: var(--font-size-small);
+}
+
+.TextItems p {
+    font-size: var(--font-size-regular);
+    color: var(--dark-blue-500);
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+.artworkCarousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--font-size-small);
+    margin-top: var(--font-size-small);
+    padding: 12px 24px;
+    border-radius: 100px;
+    background: var(--dark-blue-500);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.carouselArrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+.carouselArrow:hover {
+    opacity: 0.8;
+}
+
+.artworkName {
+    color: var(--background);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-semibold);
+    white-space: nowrap;
+    flex: 1;
+    text-align: center;
+}
+
+/* TIMELINE BAR STYLING */
+.Timeline {
+    position: relative;
+    z-index: 100000;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .TextContainer {
+        right: var(--font-size-regular);
+        width: 45%;
+    }
+    .TextContainer.minimized {
+        right: var(--font-size-regular);
+        top: calc(var(--font-size-small) + 60px);
+    }
+    .TextItems h1 {
+        font-size: var(--font-size-medium);
+    }
+    .TextItems p {
+        font-size: var(--font-size-small);
+    }
+}
+
+@media (max-width: 768px) {
+    .TextContainer {
+        right: var(--font-size-small);
+        width: 90%;
+        max-width: none;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .TextContainer.minimized {
+        right: var(--font-size-small);
+        top: calc(var(--font-size-extra-small) + 60px);
+        max-width: 150px;
+        left: auto;
+        transform: translateY(0);
+    }
+    .TextItems h1 {
+        font-size: var(--font-size-small);
+    }
+    .TextItems p {
+        font-size: var(--font-size-extra-small);
+    }
+    .TextContainer :global(.textbox) {
+        padding: var(--font-size-small);
+    }
+    .fullSizeButton {
+        font-size: var(--font-size-extra-small);
+        padding: 6px 12px;
+    }
+}
+

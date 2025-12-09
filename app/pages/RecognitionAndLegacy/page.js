@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/pages/EarlyCareer/EarlyCareer.module.css";
+import styles from "@/app/pages/RecognitionAndLegacy/RecognitionAndLegacy.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -11,17 +11,11 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Mes Reves", year: 1912, image: "/Mes Reves.jpg" },
-    { name: "Marche des Snobs", year: 1926, image: "/Marche des Snobs.webp" },
-    {
-        name: "Le tango des aveux",
-        year: 1925,
-        image: "/Le tango des aveux.jpg",
-    },
-    { name: "Landscape", year: 1926, image: "/Landscape.jpg" },
+    { name: "Golconda", year: 1953, image: "/Golconda.webp" },
+    { name: "The Empire of Light", year: 1954, image: "/Golconda.webp" },
 ];
 
-export default function EarlyCareer() {
+export default function RecognitionAndLegacy() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
@@ -37,15 +31,15 @@ export default function EarlyCareer() {
     const handleBack = () => {
         setIsTransitioning(true);
         setTimeout(() => {
-            router.push("/pages/Seducer");
+            router.push("/pages/RenoirAndVachePeriods");
         }, 600);
     };
 
     const handleNext = () => {
         setIsTransitioning(true);
         setTimeout(() => {
-            router.push("/pages/Surrealism");
-        }, 800);
+            router.push("/pages/Death");
+        }, 600);
     };
 
     const handleMinimize = () => {
@@ -92,10 +86,7 @@ export default function EarlyCareer() {
 
     return (
         <>
-            <div
-                className={`${styles.page} ${
-                    isTransitioning ? styles.fadeOut : ""
-                }`}>
+            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         {isSliding && (
@@ -130,7 +121,7 @@ export default function EarlyCareer() {
                     <div className={styles.Timeline}>
                         <TimelineBar
                             onYearChange={handleYearChange}
-                            initialYear={1920}
+                            initialYear={1950}
                         />
                     </div>
 
@@ -186,19 +177,16 @@ export default function EarlyCareer() {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>Early Career</h1>
+                                        <h1>Recognition and Legacy</h1>
                                         <p>
-                                            In 1912, Magritte's mother
-                                            tragically took her own life by
-                                            drowning in the Sambre River. This
-                                            profound loss would deeply influence
-                                            his artistic vision.
+                                            By the 1950s, Magritte had achieved
+                                            international recognition for his
+                                            unique surrealist vision.
                                         </p>
                                         <p>
-                                            The image of a veiled face, water,
-                                            and the mystery of what lies beneath
-                                            would become recurring themes in his
-                                            work.
+                                            His work influenced countless artists
+                                            and continues to inspire contemporary
+                                            art and popular culture today.
                                         </p>
                                         <div className={styles.artworkCarousel}>
                                             <button
@@ -268,3 +256,4 @@ export default function EarlyCareer() {
         </>
     );
 }
+

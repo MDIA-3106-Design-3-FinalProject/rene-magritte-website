@@ -13,7 +13,7 @@ export default function TimelineBar({ onYearChange, initialYear }) {
     const yearDropdownRef = useRef(null);
     const hamburgerRef = useRef(null);
 
-    const years = [1898, 1908, 1912, 1916, 1920, 1925, 1927, 1930, 1943, 1967];
+    const years = [1898, 1916, 1920, 1926, 1928, 1930, 1943, 1950, 1967];
 
     const handleYearClick = (year) => {
         setActiveYear(year);
@@ -25,16 +25,22 @@ export default function TimelineBar({ onYearChange, initialYear }) {
         // Navigate to specific pages based on year
         if (year === 1898) {
             router.push("/pages/Birth");
-        } else if (year === 1908) {
+        } else if (year === 1916) {
             router.push("/pages/Seducer");
-        } else if (year === 1912) {
+        } else if (year === 1920) {
             router.push("/pages/EarlyCareer");
-        } else if (year === 1925) {
-            router.push("/pages/Surrealism");
         } else if (year === 1926) {
+            router.push("/pages/Surrealism");
+        } else if (year === 1928) {
             router.push("/pages/EarlyWork");
         } else if (year === 1930) {
             router.push("/pages/ReturnToBelgium");
+        } else if (year === 1943) {
+            router.push("/pages/RenoirAndVachePeriods");
+        } else if (year === 1950) {
+            router.push("/pages/RecognitionAndLegacy");
+        } else if (year === 1967) {
+            router.push("/pages/Death");
         }
         // Add more year-to-page mappings as needed
     };
