@@ -23,7 +23,7 @@ export default function Home() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        router.push("/pages/Room");
     };
 
     const handleGolcondaClick = () => {

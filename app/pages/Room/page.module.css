@@ -1,10 +1,17 @@
 .roomContainer {
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
     user-select: none;
-    background: transparent;
+    background: transparent !important;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
 }
 
 .timelineBarWrapper {
@@ -19,6 +26,29 @@
 :global(body) {
     background: transparent !important;
     overflow-x: hidden;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+}
+
+:global(html) {
+    background: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+}
+
+:global(#__next) {
+    background: transparent !important;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+}
+
+:global(main) {
+    background: transparent !important;
+    min-height: 100vh;
+    overflow-x: hidden !important;
 }
 
 .backgroundWrapper {
@@ -26,21 +56,22 @@
     top: 0;
     left: 0;
     height: 100vh;
+    min-height: 100vh;
     z-index: 0;
     pointer-events: none;
     transition: transform 0s;
     will-change: transform;
     overflow: hidden;
+    background: transparent;
 }
 
 .backgroundImage {
     display: block;
     height: 100vh;
+    min-height: 100vh;
     width: auto;
-    object-fit: contain;
+    object-fit: cover;
     object-position: left center;
-    transform: scale(0.8);
-    transform-origin: left center;
 }
 
 .contentWrapper {
@@ -64,4 +95,3 @@
     right: 5%;
     z-index: 10;
 }
-
