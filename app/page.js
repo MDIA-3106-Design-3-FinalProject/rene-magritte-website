@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
@@ -10,15 +11,27 @@ import Credits from "./pages/Credits/page";
 
 export default function Home() {
     const router = useRouter();
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
     const handleStart = () => {
         console.log("Start button clicked");
-        router.push("/pages/Home"); //navigate to home
+        setIsTransitioning(true);
+        // Wait for fade out animation to complete before navigating
+        setTimeout(() => {
+            router.push("/pages/Home");
+        }, 600); // Wait for fade out
     };
 
     return (
         <div className={styles.page}>
-            <div className={styles.loadingContainer}>
+            {/* Transition overlay */}
+            {isTransitioning && (
+                <div className={styles.transitionOverlay}></div>
+            )}
+            <div
+                className={`${styles.loadingContainer} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 <Image
                     src='/loading-page.png'
                     alt='Loading background'

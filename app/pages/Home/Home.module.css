@@ -1,26 +1,99 @@
+/* Set blue background on body/html during page load */
+:global(body),
+:global(html) {
+    background: var(--light-blue-100) !important;
+}
+
 .page {
     display: flex;
     min-height: 100vh;
     width: 100%;
     position: relative;
     overflow: hidden;
-    background: var(--background);
+    background: var(--light-blue-100) !important;
+    animation: fadeIn 0.8s ease-in-out forwards;
+    opacity: 0;
 }
 
 .container {
     position: relative;
     width: 100%;
     height: 100vh;
+    background: var(--light-blue-100);
+    animation: fadeInContainer 0.8s ease-in-out forwards;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.container.fadeOut {
+    opacity: 0;
+}
+
+.transitionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--light-blue-100);
+    z-index: 999999;
+    opacity: 0;
+    animation: fadeInOutTransition 1.2s ease-in-out forwards;
+}
+
+@keyframes fadeInOutTransition {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInContainer {
+    from {
+        background: var(--light-blue-100);
+    }
+    to {
+        background: transparent;
+    }
 }
 
 .backgroundImage {
     object-fit: cover;
     z-index: 0;
+    opacity: 0;
+    animation: fadeInBackground 0.8s ease-in-out 0.2s forwards;
+}
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .timelineWrapper {
     position: relative;
     z-index: 100000;
+    opacity: 0;
+    animation: fadeInContent 0.8s ease-in-out 1s forwards;
 }
 
 .renePortrait {
@@ -49,13 +122,30 @@
     width: 40%;
     max-width: 600px;
     z-index: 5000;
-    transition: all 0.3s ease;
+    transition: top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                max-width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     background: transparent !important;
+    opacity: 0;
+    animation: fadeInTextContainer 0.8s ease-in-out 1s forwards;
+}
+
+@keyframes fadeInTextContainer {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-50% + 10px));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
 }
 
 .textContainer.minimized {
-    top: calc(var(--font-size-small) + 60px);
-    right: var(--font-size-medium);
+    top: calc(var(--font-size-small) * 2 + 80px);
+    right: calc(var(--font-size-medium) - var(--font-size-small) * 2);
     transform: translateY(0);
     width: auto;
     max-width: 200px;
@@ -71,21 +161,22 @@
 
 @media (max-width: 1024px) {
     .textContainer.minimized {
-        top: calc(var(--font-size-small) + 60px);
-        right: var(--font-size-regular);
+        top: calc(var(--font-size-small) * 2 + 80px);
+        right: calc(var(--font-size-regular) - var(--font-size-medium) * 2);
     }
 }
 
 @media (max-width: 768px) {
     .textContainer.minimized {
-        top: calc(var(--font-size-extra-small) + 60px);
-        right: var(--font-size-small);
+        top: calc(var(--font-size-small) * 2 + 80px);
+        right: calc(var(--font-size-small) - var(--font-size-extra-small) * 2);
     }
 }
 
 .textContainer :global(.textbox) {
     text-align: center;
     padding: var(--font-size-medium);
+    transition: all 0.5s ease-in-out;
 }
 
 .textContainer.minimized :global(.textbox) {
@@ -188,6 +279,19 @@
     display: flex;
     justify-content: space-between;
     z-index: 10000;
+    opacity: 0;
+    animation: fadeInContent 0.8s ease-in-out 1s forwards;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 1024px) {

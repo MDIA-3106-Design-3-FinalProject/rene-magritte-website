@@ -13,6 +13,7 @@ import TextBox from "@/app/components/TextBox/TextBox";
 export default function Home() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
     const handleYearChange = (year) => {
         console.log("Selected year:", year);
@@ -23,7 +24,10 @@ export default function Home() {
     };
 
     const handleNext = () => {
-        router.push("/pages/Room");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/Room");
+        }, 600);
     };
 
     const handleGolcondaClick = () => {
@@ -40,7 +44,14 @@ export default function Home() {
 
     return (
         <div className={styles.page}>
-            <div className={styles.container}>
+            {/* Transition overlay */}
+            {isTransitioning && (
+                <div className={styles.transitionOverlay}></div>
+            )}
+            <div
+                className={`${styles.container} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 {/* Background Image - Golconda */}
                 <Image
                     src='/Golconda.webp'
