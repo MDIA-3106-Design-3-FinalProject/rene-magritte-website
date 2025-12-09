@@ -1,0 +1,168 @@
+.page {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--foreground);
+}
+
+.loadingContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonContainer {
+    position: absolute;
+    bottom: 10%;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    animation: fadeInButton 1s ease-in-out 2.5s forwards;
+    z-index: 10000;
+}
+
+/* TEXTBOX STYLING  */
+.TextContainer {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    width: 40%;
+    opacity: 0;
+    animation: fadeInText 1s ease-in-out 2.5s forwards;
+    z-index: 5000;
+}
+
+.TextItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-small); /* 16px */
+}
+
+/* TIMELINE BAR STYLING */
+.Timeline {
+    position: relative;
+    z-index: 5;
+}
+
+.bowlerHat,
+.apple {
+    z-index: 9999;
+}
+
+/* HAT AND APPLE STYLING  */
+.bowlerHat {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 2;
+    opacity: 0;
+    rotate: -30deg;
+    animation: fadeInFloat 1.5s ease-in-out 0.5s forwards,
+        float 3s ease-in-out 2.5s infinite;
+}
+
+.hatImage {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    height: auto;
+}
+
+.apple {
+    position: absolute;
+    bottom: 0%;
+    right: 8%;
+    z-index: 2;
+    opacity: 0;
+    rotate: 10deg;
+    animation: fadeInFloat 1.5s ease-in-out 0.8s forwards,
+        float 3s ease-in-out 2.8s infinite;
+}
+
+.appleImage {
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    height: auto;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInFloat {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(var(--font-size-regular)); /* 20px */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+        transform: translateY(-40%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 768px) {
+    .bowlerHat {
+        top: 8%;
+        left: 5%;
+    }
+
+    .apple {
+        top: 12%;
+        right: 8%;
+    }
+
+    .logo {
+        width: 80%;
+        max-width: 400px;
+        height: auto;
+    }
+}

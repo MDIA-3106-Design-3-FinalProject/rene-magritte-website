@@ -4,12 +4,17 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Button from "./components/Button";
+import { useRouter } from "next/navigation";
+
+//-----PAGES---------//
+import Credits from "./pages/Credits/page";
 
 export default function Home() {
     const router = useRouter();
 
     const handleStart = () => {
-        router.push("/timeline");
+        console.log("Start button clicked");
+        router.push("/pages/Credits"); //navigate to credits
     };
 
     return (
@@ -58,7 +63,11 @@ export default function Home() {
 
                 {/* Start Button */}
                 <div className={styles.buttonContainer}>
-                    <Button onClick={handleStart}>START</Button>
+                    <Button
+                        type='regular'
+                        onClick={handleStart}>
+                        START
+                    </Button>
                 </div>
             </div>
         </div>
