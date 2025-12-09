@@ -9,6 +9,13 @@ export default function FramesGrid() {
                 className={styles.frame}
                 style={{ top: "10%", left: "5%" }}>
                 <Image
+                    src='/Rene Magritte - Child.jpg'
+                    alt='Rene Magritte - Child'
+                    width={180}
+                    height={220}
+                    className={styles.framePicture}
+                />
+                <Image
                     src='/frame.png'
                     alt='Frame'
                     width={180}

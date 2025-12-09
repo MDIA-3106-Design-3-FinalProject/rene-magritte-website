@@ -8,11 +8,24 @@
 .frame {
     position: absolute;
     z-index: 2;
-    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
+}
+
+.framePicture {
+    position: absolute;
+    top: 11%;
+    left: 11%;
+    width: 78%;
+    height: 78%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 1;
 }
 
 .frameImage {
+    position: relative;
     width: 100%;
     height: auto;
+    z-index: 2;
 }
 
