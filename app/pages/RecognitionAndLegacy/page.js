@@ -11,8 +11,12 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Golconda", year: 1953, image: "/Golconda.webp" },
-    { name: "The Empire of Light", year: 1954, image: "/Golconda.webp" },
+    { name: "The Empire of Light", year: 1954, image: "/The empire of light.jpg" },
+    { name: "The Pilgrim", year: 1966, image: "/The Pilgrim.jpg" },
+    { name: "The Art of Living", year: 1967, image: "/The art of living.jpg" },
+    { name: "Man in a Bowler Hat", year: 1964, image: "/Man in a Bowler Hat.webp" },
+    { name: "The Big Family", year: 1963, image: "/The Big Family.jpg" },
+    { name: "The Son of Man", year: 1964, image: "/The Son of Men.jpg" },
 ];
 
 export default function RecognitionAndLegacy() {
