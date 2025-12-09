@@ -5,15 +5,15 @@ import styles from "./TimelineBar.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function TimelineBar({ onYearChange }) {
+export default function TimelineBar({ onYearChange, initialYear }) {
     const router = useRouter();
-    const [activeYear, setActiveYear] = useState(null);
+    const [activeYear, setActiveYear] = useState(initialYear || null);
     const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
     const yearDropdownRef = useRef(null);
     const hamburgerRef = useRef(null);
 
-    const years = [1898, 1908, 1912, 1916, 1920, 1927, 1930, 1943, 1967];
+    const years = [1898, 1908, 1912, 1916, 1920, 1925, 1927, 1930, 1943, 1967];
 
     const handleYearClick = (year) => {
         setActiveYear(year);

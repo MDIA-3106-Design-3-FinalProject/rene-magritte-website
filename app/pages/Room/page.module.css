@@ -8,10 +8,23 @@
     overflow-x: hidden;
     overflow-y: hidden;
     user-select: none;
-    background: transparent !important;
+    background: var(--light-blue-100) !important;
     margin: 0;
     padding: 0;
     z-index: 0;
+    animation: fadeInRoom 0.8s ease-in-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInRoom {
+    from {
+        opacity: 0;
+        background: var(--light-blue-100);
+    }
+    to {
+        opacity: 1;
+        background: transparent;
+    }
 }
 
 .timelineBarWrapper {
@@ -24,31 +37,44 @@
 
 /* Remove background branco do body nesta página */
 :global(body) {
-    background: transparent !important;
+    background: var(--light-blue-100) !important;
     overflow-x: hidden;
     margin: 0 !important;
     padding: 0 !important;
     min-height: 100vh;
+    animation: fadeInRoomBody 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeInRoomBody {
+    from {
+        background: var(--light-blue-100);
+    }
+    to {
+        background: transparent;
+    }
 }
 
 :global(html) {
-    background: transparent !important;
+    background: var(--light-blue-100) !important;
     margin: 0 !important;
     padding: 0 !important;
     min-height: 100vh;
     overflow-x: hidden !important;
+    animation: fadeInRoomBody 0.8s ease-in-out forwards;
 }
 
 :global(#__next) {
-    background: transparent !important;
+    background: var(--light-blue-100) !important;
     min-height: 100vh;
     overflow-x: hidden !important;
+    animation: fadeInRoomBody 0.8s ease-in-out forwards;
 }
 
 :global(main) {
-    background: transparent !important;
+    background: var(--light-blue-100) !important;
     min-height: 100vh;
     overflow-x: hidden !important;
+    animation: fadeInRoomBody 0.8s ease-in-out forwards;
 }
 
 .backgroundWrapper {
