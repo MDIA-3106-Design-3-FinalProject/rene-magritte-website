@@ -6,7 +6,7 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: var(--background) !important;
+    background: transparent !important;
     animation: fadeIn 0.8s ease-in-out forwards;
     opacity: 0;
 }
@@ -45,6 +45,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
+    overflow: hidden;
 }
 
 .imageWrapper {
@@ -54,36 +56,36 @@
     width: 100%;
     height: 100%;
     z-index: 0;
-    animation: shrinkToLeft 4s ease-in-out forwards;
     overflow: hidden;
+    background: transparent;
 }
 
 .backgroundImage {
     object-fit: cover;
     object-position: center;
     opacity: 1;
-    animation: moveToLeft 4s ease-in-out forwards;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes shrinkToLeft {
+.seaImage {
+    animation: seaSlideIn 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 2;
+    opacity: 1;
+    will-change: transform;
+    transform-origin: right center;
+}
+
+@keyframes seaSlideIn {
     0% {
-        width: 100%;
-        left: 0;
+        transform: translateX(100%);
     }
     100% {
-        width: 50%;
-        left: 0;
+        transform: translateX(0);
     }
 }
 
-@keyframes moveToLeft {
-    0% {
-        object-position: center;
-    }
-    100% {
-        object-position: left center;
-    }
-}
 
 .buttonContainer {
     position: absolute;
@@ -194,6 +196,20 @@
     text-align: center;
 }
 
+.seducerButton {
+    margin-top: var(--font-size-small);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 100px;
+    background: var(--dark-blue-500);
+    color: var(--background);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-semibold);
+    width: 100%;
+    box-sizing: border-box;
+    cursor: default;
+}
+
 /* TIMELINE BAR STYLING */
 .Timeline {
     position: relative;
@@ -215,6 +231,10 @@
     }
     .TextItems p {
         font-size: var(--font-size-small);
+    }
+    .seducerButton {
+        font-size: var(--font-size-extra-small);
+        padding: 10px 20px;
     }
 }
 
@@ -239,6 +259,10 @@
     .TextItems p {
         font-size: var(--font-size-extra-small);
     }
+    .seducerButton {
+        font-size: var(--font-size-extra-small);
+        padding: 8px 16px;
+    }
     .TextContainer :global(.textbox) {
         padding: var(--font-size-small);
     }
@@ -247,4 +271,5 @@
         padding: 6px 12px;
     }
 }
+
 

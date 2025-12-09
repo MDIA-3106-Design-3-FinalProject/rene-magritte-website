@@ -13,6 +13,7 @@ import TextBox from "@/app/components/TextBox/TextBox";
 export default function Birth() {
     const router = useRouter();
     const [isMinimized, setIsMinimized] = useState(false);
+    const [isTransitioning, setIsTransitioning] = useState(false);
 
     const handleYearChange = (year) => {
         console.log("Selected year:", year);
@@ -23,7 +24,10 @@ export default function Birth() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/Seducer");
+        }, 600);
     };
 
     const handleMinimize = () => {
@@ -36,7 +40,7 @@ export default function Birth() {
 
     return (
         <>
-            <div className={styles.page}>
+            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         <Image
