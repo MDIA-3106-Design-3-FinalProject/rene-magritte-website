@@ -1,12 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Button from "./components/Button";
 
 export default function Home() {
+    const router = useRouter();
+
     const handleStart = () => {
-        console.log("Start button clicked");
+        router.push("/timeline");
     };
 
     return (
