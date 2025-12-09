@@ -3,10 +3,17 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import Button from "./components/Button";
+import { useRouter } from "next/navigation";
+
+//-----PAGES---------//
+import Credits from "./pages/Credits/page";
 
 export default function Home() {
+    const router = useRouter();
+
     const handleStart = () => {
         console.log("Start button clicked");
+        router.push("/pages/Credits"); //navigate to credits
     };
 
     return (
