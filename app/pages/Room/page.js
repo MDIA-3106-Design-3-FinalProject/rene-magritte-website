@@ -13,6 +13,7 @@ export default function Room() {
     const [isDragging, setIsDragging] = useState(false);
     const [translateX, setTranslateX] = useState(0);
     const [imageWidth, setImageWidth] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(false);
     const containerRef = useRef(null);
     const startXRef = useRef(0);
     const translateXRef = useRef(0);
@@ -59,7 +60,10 @@ export default function Room() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/Birth");
+        }, 600);
     };
 
     const handleMouseDown = useCallback((e) => {
@@ -111,7 +115,7 @@ export default function Room() {
 
     return (
         <div
-            className={styles.roomContainer}
+            className={`${styles.roomContainer} ${isTransitioning ? styles.fadeOut : ''}`}
             ref={containerRef}
             onMouseDown={handleMouseDown}
             onMouseLeave={handleMouseLeave}

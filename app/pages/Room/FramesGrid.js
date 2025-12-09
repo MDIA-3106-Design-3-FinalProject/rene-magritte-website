@@ -96,8 +96,8 @@ export default function FramesGrid() {
                 className={`${styles.frame} ${styles.clickableFrame}`}
                 style={{ top: "10%", left: "60%" }}>
                 <Image
-                    src='/The Rape.jpg'
-                    alt='The Rape'
+                    src='/The Human Condition.webp'
+                    alt='The Human Condition'
                     width={180}
                     height={220}
                     className={`${styles.framePicture} ${styles.framePictureCenter}`}

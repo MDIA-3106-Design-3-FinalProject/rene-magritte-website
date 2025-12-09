@@ -59,7 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background: #000;
+    background: var(--background);
 }
 
 .backgroundImage {
