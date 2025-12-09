@@ -29,6 +29,8 @@ export default function TimelineBar({ onYearChange, initialYear }) {
             router.push("/pages/Seducer");
         } else if (year === 1912) {
             router.push("/pages/EarlyCareer");
+        } else if (year === 1925) {
+            router.push("/pages/Surrealism");
         }
         // Add more year-to-page mappings as needed
     };

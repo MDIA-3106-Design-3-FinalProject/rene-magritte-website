@@ -6,13 +6,13 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: var(--background) !important;
+    background: #2a2a2a !important;
     animation: fadeIn 0.8s ease-in-out forwards;
     opacity: 0;
 }
 
 .page.fadeOut {
-    animation: fadeOutToBlack 0.6s ease-in-out forwards;
+    animation: fadeOut 0.6s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
@@ -24,20 +24,60 @@
     }
 }
 
-@keyframes fadeOutToBlack {
+@keyframes fadeOut {
     from {
         opacity: 1;
-        background: var(--background);
     }
     to {
-        opacity: 1;
-        background: #2a2a2a;
+        opacity: 0;
     }
 }
 
 :global(body),
 :global(html) {
-    background: var(--background) !important;
+    background: #2a2a2a !important;
+}
+
+.curtainLeft {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #2a2a2a;
+    z-index: 1000;
+    animation: curtainOpenLeft 1.5s ease-in-out 0.3s forwards;
+    transform-origin: left center;
+}
+
+.curtainRight {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #2a2a2a;
+    z-index: 1000;
+    animation: curtainOpenRight 1.5s ease-in-out 0.3s forwards;
+    transform-origin: right center;
+}
+
+@keyframes curtainOpenLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes curtainOpenRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .loadingContainer {
@@ -47,7 +87,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.loadingContainer.contentVisible {
+    opacity: 1;
 }
 
 .imageWrapper {
@@ -63,88 +108,13 @@
     justify-content: flex-start;
 }
 
-.imageWrapper > * {
-    position: absolute !important;
-    top: 0;
-    left: 0;
-}
-
 .backgroundImage {
     object-fit: cover;
     object-position: left center;
     opacity: 1;
     width: 100%;
     height: 100%;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-        opacity 0.5s ease-in-out;
-}
-
-.currentImage {
-    z-index: 1 !important;
-}
-
-.slideInLeft {
-    animation: slideInFromRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    z-index: 2;
-}
-
-.slideInRight {
-    animation: slideInFromLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    z-index: 2;
-}
-
-.slideOutLeft {
-    animation: slideOutToLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    z-index: 1;
-}
-
-.slideOutRight {
-    animation: slideOutToRight 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    z-index: 1;
-}
-
-@keyframes slideInFromRight {
-    0% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideInFromLeft {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOutToLeft {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-}
-
-@keyframes slideOutToRight {
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
+    transition: opacity 0.5s ease-in-out;
 }
 
 .buttonContainer {
@@ -256,42 +226,19 @@
     text-align: center;
 }
 
-.artworkCarousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--font-size-small);
+.artworkButton {
     margin-top: var(--font-size-small);
     padding: 12px 24px;
+    border: none;
     border-radius: 100px;
     background: var(--dark-blue-500);
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.carouselArrow {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
-    transition: opacity 0.2s ease;
-    opacity: 1;
-}
-
-.carouselArrow:hover {
-    opacity: 0.8;
-}
-
-.artworkName {
     color: var(--background);
     font-size: var(--font-size-small);
     font-weight: var(--font-semibold);
-    white-space: nowrap;
-    flex: 1;
-    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: default;
+    pointer-events: none;
 }
 
 /* TIMELINE BAR STYLING */
@@ -316,12 +263,6 @@
     .TextItems p {
         font-size: var(--font-size-small);
     }
-    .artworkCarousel {
-        padding: 10px 20px;
-    }
-    .artworkName {
-        font-size: var(--font-size-extra-small);
-    }
 }
 
 @media (max-width: 768px) {
@@ -345,16 +286,6 @@
     .TextItems p {
         font-size: var(--font-size-extra-small);
     }
-    .artworkCarousel {
-        padding: 8px 16px;
-    }
-    .artworkName {
-        font-size: var(--font-size-extra-small);
-    }
-    .carouselArrow svg {
-        width: 16px;
-        height: 16px;
-    }
     .TextContainer :global(.textbox) {
         padding: var(--font-size-small);
     }
@@ -363,3 +294,4 @@
         padding: 6px 12px;
     }
 }
+

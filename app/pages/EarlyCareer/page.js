@@ -42,7 +42,10 @@ export default function EarlyCareer() {
     };
 
     const handleNext = () => {
-        console.log("Next button clicked");
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/Surrealism");
+        }, 800);
     };
 
     const handleMinimize = () => {
