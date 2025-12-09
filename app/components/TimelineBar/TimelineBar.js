@@ -25,6 +25,10 @@ export default function TimelineBar({ onYearChange, initialYear }) {
         // Navigate to specific pages based on year
         if (year === 1898) {
             router.push("/pages/Birth");
+        } else if (year === 1908) {
+            router.push("/pages/Seducer");
+        } else if (year === 1912) {
+            router.push("/pages/EarlyCareer");
         }
         // Add more year-to-page mappings as needed
     };

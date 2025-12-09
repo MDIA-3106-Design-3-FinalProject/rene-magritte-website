@@ -11,6 +11,10 @@ export default function FramesGrid() {
         router.push("/pages/Birth");
     };
 
+    const handleSeducerFrameClick = () => {
+        router.push("/pages/Seducer");
+    };
+
     return (
         <div className={styles.framesGrid}>
             {/* Top Row - 5 frames */}
@@ -35,7 +39,8 @@ export default function FramesGrid() {
             </div>
             <div
                 className={`${styles.frame} ${styles.clickableFrame}`}
-                style={{ top: "10%", left: "17%" }}>
+                style={{ top: "10%", left: "17%" }}
+                onClick={handleSeducerFrameClick}>
                 <Image
                     src='/The Seducer.jpg'
                     alt='The Seducer'
