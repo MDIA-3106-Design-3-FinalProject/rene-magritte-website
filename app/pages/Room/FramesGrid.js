@@ -38,7 +38,7 @@ export default function FramesGrid() {
                 />
             </div>
             <div
-                className={`${styles.frame} ${styles.clickableFrame}`}
+                className={`${styles.frame} ${styles.clickableFrame} ${styles.seducerFrame}`}
                 style={{ top: "10%", left: "17%" }}
                 onClick={handleSeducerFrameClick}>
                 <Image
@@ -46,7 +46,7 @@ export default function FramesGrid() {
                     alt='The Seducer'
                     width={180}
                     height={220}
-                    className={styles.framePicture}
+                    className={`${styles.framePicture} ${styles.seducerPicture}`}
                 />
                 <Image
                     src='/frame.png'
@@ -57,15 +57,33 @@ export default function FramesGrid() {
                 />
             </div>
             <div
-                className={`${styles.frame} ${styles.clickableFrame}`}
+                className={`${styles.frame} ${styles.clickableFrame} ${styles.falseMirrorFrame}`}
                 style={{ top: "10%", left: "30%" }}>
-                <Image
-                    src='/The False Mirror.jpg'
-                    alt='The False Mirror'
-                    width={180}
-                    height={220}
-                    className={styles.framePicture}
-                />
+                <div className={styles.falseMirrorContent}>
+                    <div className={styles.skyWrapper}>
+                        <Image
+                            src='/sky.jpg'
+                            alt='Sky background'
+                            width={180}
+                            height={220}
+                            className={styles.skyImage}
+                        />
+                        <Image
+                            src='/sky.jpg'
+                            alt='Sky background duplicate'
+                            width={180}
+                            height={220}
+                            className={styles.skyImage}
+                        />
+                    </div>
+                    <Image
+                        src='/eye.png'
+                        alt='Eye'
+                        width={180}
+                        height={220}
+                        className={styles.eyeImage}
+                    />
+                </div>
                 <Image
                     src='/frame.png'
                     alt='Frame'
@@ -167,15 +185,42 @@ export default function FramesGrid() {
                 />
             </div>
             <div
-                className={`${styles.frame} ${styles.clickableFrame}`}
+                className={`${styles.frame} ${styles.clickableFrame} ${styles.golcondaFrame}`}
                 style={{ top: "38%", left: "70%" }}>
-                <Image
-                    src='/Golconda.webp'
-                    alt='Golconda'
-                    width={180}
-                    height={220}
-                    className={styles.framePicture}
-                />
+                <div className={styles.golcondaContent}>
+                    <Image
+                        src='/Golconda - no men.jpg'
+                        alt='Golconda background'
+                        width={180}
+                        height={220}
+                        className={styles.golcondaBackground}
+                    />
+                    <div className={styles.rainingMenContainer}>
+                        {Array.from({ length: 15 }, (_, i) => ({
+                            id: i,
+                            left: `${(i * 6.67) % 100}%`,
+                            delay: `${(i * 0.2) % 3}s`,
+                            duration: `${2 + (i % 2)}s`,
+                        })).map((man) => (
+                            <div
+                                key={man.id}
+                                className={styles.rainingMan}
+                                style={{
+                                    left: man.left,
+                                    animationDelay: man.delay,
+                                    animationDuration: man.duration,
+                                }}>
+                                <Image
+                                    src='/man.png'
+                                    alt='Falling man'
+                                    width={20}
+                                    height={26}
+                                    className={styles.manImage}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
                 <Image
                     src='/frame.png'
                     alt='Frame'
