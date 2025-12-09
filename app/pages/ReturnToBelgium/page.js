@@ -9,91 +9,247 @@ import Image from "next/image";
 import Button from "@/app/components/Button/Button";
 import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
-import ProgressIndicator from "@/app/components/ProgressIndicator/ProgressIndicator";
+
+const artworks = [
+    { name: "The Human Condition", year: 1933, image: "/The Human Condition.webp" },
+    { name: "The Rape", year: 1934, image: "/The Rape.jpg" },
+    { name: "The Therapist", year: 1937, image: "/The therapist.webp" },
+    { name: "Time Transfixed", year: 1938, image: "/Time Transfixed.jpg" },
+    { name: "Not to Be Reproduced", year: 1937, image: "/Not to Be Reproduced.jpg" },
+];
 
 export default function ReturnToBelgium() {
     const router = useRouter();
+    const [isMinimized, setIsMinimized] = useState(false);
+    const [isTransitioning, setIsTransitioning] = useState(false);
+    const [currentArtworkIndex, setCurrentArtworkIndex] = useState(0);
+    const [prevArtworkIndex, setPrevArtworkIndex] = useState(0);
+    const [slideDirection, setSlideDirection] = useState(null);
+    const [isSliding, setIsSliding] = useState(false);
 
-    const handleStart = () => {
-        console.log("Start button clicked");
-    };
     const handleYearChange = (year) => {
         console.log("Selected year:", year);
     };
 
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const handleBack = () => {
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/EarlyWork");
+        }, 600);
+    };
 
-    const images = [
-        "/The Human Condition.webp",
-        "/Time Transfixed.jpg",
-        "/The therapist.webp",
-    ];
+    const handleNext = () => {
+        console.log("Next button clicked");
+    };
 
-    const titles = [
-        "The Human Condition — 1933",
-        "Time Transfixed — 1938",
-        "The Therapist — 1937",
-    ];
+    const handleMinimize = () => {
+        setIsMinimized(true);
+    };
+
+    const handleMaximize = () => {
+        setIsMinimized(false);
+    };
+
+    const handlePreviousArtwork = () => {
+        if (isSliding) return;
+        setIsSliding(true);
+        setSlideDirection("right");
+        setPrevArtworkIndex(currentArtworkIndex);
+        setTimeout(() => {
+            setCurrentArtworkIndex((prev) =>
+                prev === 0 ? artworks.length - 1 : prev - 1
+            );
+            setTimeout(() => {
+                setIsSliding(false);
+                setSlideDirection(null);
+            }, 500);
+        }, 50);
+    };
+
+    const handleNextArtwork = () => {
+        if (isSliding) return;
+        setIsSliding(true);
+        setSlideDirection("left");
+        setPrevArtworkIndex(currentArtworkIndex);
+        setTimeout(() => {
+            setCurrentArtworkIndex((prev) =>
+                prev === artworks.length - 1 ? 0 : prev + 1
+            );
+            setTimeout(() => {
+                setIsSliding(false);
+                setSlideDirection(null);
+            }, 500);
+        }, 50);
+    };
+
+    const currentArtwork = artworks[currentArtworkIndex];
 
     return (
         <>
-            <div className={styles.page}>
-                {/* Logo */}
+            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
                 <div className={styles.loadingContainer}>
-                    <Image
-                        src={images[currentIndex]}
-                        alt='Background artwork'
-                        fill
-                        className={styles.backgroundImage}
-                        priority
-                    />
-
-                    <div className={styles.Timeline}>
-                        <TimelineBar onYearChange={handleYearChange} />
+                    <div className={styles.imageWrapper}>
+                        {isSliding && (
+                            <Image
+                                src={artworks[prevArtworkIndex].image}
+                                alt={artworks[prevArtworkIndex].name}
+                                fill
+                                className={`${styles.backgroundImage} ${
+                                    slideDirection === "left"
+                                        ? styles.slideOutLeft
+                                        : styles.slideOutRight
+                                }`}
+                                priority
+                            />
+                        )}
+                        <Image
+                            src={currentArtwork.image}
+                            alt={currentArtwork.name}
+                            fill
+                            className={`${styles.backgroundImage} ${
+                                isSliding
+                                    ? slideDirection === "left"
+                                        ? styles.slideInLeft
+                                        : styles.slideInRight
+                                    : styles.currentImage
+                            }`}
+                            priority
+                            key={currentArtworkIndex}
+                        />
                     </div>
 
-                    <div className={styles.TextContainer}>
-                        <TextBox>
-                            <div className={styles.TextItems}>
-                                <h1>The return to belgium</h1>
-                                <p>
-                                    By 1930, Magritte returned home to Brussels,
-                                    disillusioned by artistic politics but
-                                    grounded in his own vision.
-                                </p>
-                                <p>
-                                    There, he continued painting quietly,
-                                    developing works like The Human Condition
-                                    and The Blank Signature.
-                                </p>
-                                <p>
-                                    His art became a mirror — not of reality,
-                                    but of how we misunderstand it.
-                                </p>
-                            </div>
-                        </TextBox>
-                        {/* Title of artwork */}
-                        <TextBox>
-                            <div className={styles.TextItems}>
-                                <p>{titles[currentIndex]}</p>
-                            </div>
-                        </TextBox>
-                        <ProgressIndicator
-                            total={images.length}
-                            current={currentIndex}
-                            onChange={setCurrentIndex}
+                    <div className={styles.Timeline}>
+                        <TimelineBar
+                            onYearChange={handleYearChange}
+                            initialYear={1930}
                         />
+                    </div>
+
+                    <div
+                        className={`${styles.TextContainer} ${
+                            isMinimized ? styles.minimized : ""
+                        }`}>
+                        {!isMinimized && (
+                            <button
+                                className={styles.closeButton}
+                                onClick={handleMinimize}
+                                aria-label='Minimize'>
+                                <svg
+                                    width='20'
+                                    height='20'
+                                    viewBox='0 0 24 24'
+                                    fill='none'
+                                    xmlns='http://www.w3.org/2000/svg'>
+                                    <path
+                                        d='M7 17L17 7M17 7H7M17 7V17'
+                                        stroke='var(--dark-blue-500)'
+                                        strokeWidth='2'
+                                        strokeLinecap='round'
+                                        strokeLinejoin='round'
+                                    />
+                                </svg>
+                            </button>
+                        )}
+                        <TextBox transparent={isMinimized}>
+                            <div className={styles.TextItems}>
+                                {isMinimized ? (
+                                    <>
+                                        <button
+                                            className={styles.fullSizeButton}
+                                            onClick={handleMaximize}>
+                                            Learn more
+                                            <svg
+                                                width='16'
+                                                height='16'
+                                                viewBox='0 0 24 24'
+                                                fill='none'
+                                                xmlns='http://www.w3.org/2000/svg'
+                                                style={{ marginLeft: "8px" }}>
+                                                <path
+                                                    d='M6 9L12 15L18 9'
+                                                    stroke='currentColor'
+                                                    strokeWidth='2'
+                                                    strokeLinecap='round'
+                                                    strokeLinejoin='round'
+                                                />
+                                            </svg>
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h1>Return to Belgium</h1>
+                                        <p>
+                                            In 1930, Magritte returned to Brussels
+                                            and established his permanent studio
+                                            there, where he would create many of
+                                            his most iconic works.
+                                        </p>
+                                        <p>
+                                            This period marked a significant shift
+                                            in his artistic development and
+                                            solidified his place in the Surrealist
+                                            movement.
+                                        </p>
+                                        <div className={styles.artworkCarousel}>
+                                            <button
+                                                className={styles.carouselArrow}
+                                                onClick={handlePreviousArtwork}
+                                                aria-label='Previous artwork'>
+                                                <svg
+                                                    width='20'
+                                                    height='20'
+                                                    viewBox='0 0 24 24'
+                                                    fill='none'
+                                                    xmlns='http://www.w3.org/2000/svg'>
+                                                    <path
+                                                        d='M15 18L9 12L15 6'
+                                                        stroke='var(--background)'
+                                                        strokeWidth='2.5'
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                    />
+                                                </svg>
+                                            </button>
+                                            <span
+                                                className={styles.artworkName}>
+                                                {currentArtwork.name} —{" "}
+                                                {currentArtwork.year}
+                                            </span>
+                                            <button
+                                                className={styles.carouselArrow}
+                                                onClick={handleNextArtwork}
+                                                aria-label='Next artwork'>
+                                                <svg
+                                                    width='20'
+                                                    height='20'
+                                                    viewBox='0 0 24 24'
+                                                    fill='none'
+                                                    xmlns='http://www.w3.org/2000/svg'>
+                                                    <path
+                                                        d='M9 18L15 12L9 6'
+                                                        stroke='var(--background)'
+                                                        strokeWidth='2.5'
+                                                        strokeLinecap='round'
+                                                        strokeLinejoin='round'
+                                                    />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </TextBox>
                     </div>
 
                     <div className={styles.buttonContainer}>
                         <Button
                             type='back'
-                            onClick={handleStart}>
+                            onClick={handleBack}>
                             BACK
                         </Button>
                         <Button
                             type='next'
-                            onClick={handleStart}>
+                            onClick={handleNext}>
                             NEXT
                         </Button>
                     </div>
