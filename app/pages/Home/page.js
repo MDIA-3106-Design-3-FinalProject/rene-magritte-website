@@ -110,7 +110,10 @@ export default function Home() {
                 </div>
 
                 {/* René Magritte Portrait */}
-                <div className={`${styles.renePortrait} ${reneVisible ? styles.reneVisible : ''}`}>
+                <div
+                    className={`${styles.renePortrait} ${
+                        reneVisible ? styles.reneVisible : ""
+                    }`}>
                     <Image
                         src='/Rene.png'
                         alt='René Magritte'
@@ -177,10 +180,15 @@ export default function Home() {
                                     <>
                                         <h1>Meet René Magritte</h1>
                                         <p>
-                                            René Magritte was a Belgian painter
-                                            born in 1898, whose calm demeanor
-                                            hid a restless mind. He believed
-                                            that art should challenge perception
+                                            René Magritte was a{" "}
+                                            <strong>
+                                                Belgian surrealist painter
+                                            </strong>{" "}
+                                            whose calm demeanor hid a restless
+                                            mind. He believed that art should{" "}
+                                            <strong>
+                                                challenge perception
+                                            </strong>
                                             — not just decorate walls.
                                         </p>
                                         <p>
@@ -189,10 +197,16 @@ export default function Home() {
                                             brushstroke was a clue.
                                         </p>
                                         <p>
-                                            Through surreal juxtapositions —
-                                            bowler hats, clouds, doors, and eyes
-                                            — Magritte reminded us that mystery
-                                            lies in the ordinary.
+                                            Through{" "}
+                                            <strong>
+                                                surreal juxtapositions
+                                            </strong>{" "}
+                                            — bowler hats, clouds, doors, and
+                                            eyes — Magritte reminded us that{" "}
+                                            <strong>
+                                                mystery lies in the ordinary
+                                            </strong>
+                                            .
                                         </p>
                                         <button
                                             className={styles.golcondaButton}
