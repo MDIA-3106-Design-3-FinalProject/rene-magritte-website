@@ -158,7 +158,7 @@ export default function EarlyCareer() {
                     <div className={styles.Timeline}>
                         <TimelineBar
                             onYearChange={handleYearChange}
-                            initialYear={1920}
+                            initialYear={1916}
                         />
                     </div>
 
