@@ -13,7 +13,7 @@ import TextBox from "@/app/components/TextBox/TextBox";
 const artworks = [
     { name: "The False Mirror", year: 1928, image: null, isEyeComposition: true },
     { name: "The Treachery of Images", year: 1929, image: "/The Treachery of Images.webp", isEyeComposition: false },
-    { name: "The Lovers I", year: 1928, image: "/The Lovers I.png", isEyeComposition: false },
+    { name: "The Lovers I", year: 1928, image: "/The Lovers I-2.png", isEyeComposition: false },
 ];
 
 export default function EarlyWork() {
@@ -29,7 +29,7 @@ export default function EarlyWork() {
     const eyeRef = useRef(null);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {
@@ -169,14 +169,14 @@ export default function EarlyWork() {
                     <div className={styles.skyContainer}>
                         <div className={styles.skyWrapper}>
                             <Image
-                                src='/sky.jpg'
+                                src='/sky-2.png'
                                 alt='Sky background'
                                 fill
                                 className={styles.skyImage}
                                 priority
                             />
                             <Image
-                                src='/sky.jpg'
+                                src='/sky-2.png'
                                 alt='Sky background duplicate'
                                 fill
                                 className={styles.skyImage}
@@ -191,7 +191,7 @@ export default function EarlyWork() {
                     <div className={styles.eyeContainer}>
                         <div ref={eyeRef} className={styles.eyeWrapper}>
                             <Image
-                                src='/eye-2.png'
+                                src='/eye-3.png'
                                 alt='Eye'
                                 fill
                                 className={styles.eyeImage}

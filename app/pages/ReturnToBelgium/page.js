@@ -11,10 +11,10 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "The Human Condition", year: 1933, image: "/The Human Condition.webp" },
-    { name: "The Rape", year: 1934, image: "/The Rape.jpg" },
-    { name: "The Therapist", year: 1937, image: "/The therapist.webp" },
-    { name: "Time Transfixed", year: 1938, image: "/Time Transfixed.jpg" },
+    { name: "The Human Condition", year: 1933, image: "/The Human Condition-2.png" },
+    { name: "The Rape", year: 1934, image: "/The Rape-2.png" },
+    { name: "The Therapist", year: 1937, image: "/The therapist-2.png" },
+    { name: "Time Transfixed", year: 1938, image: "/Time Transfixed-2.png" },
     { name: "Not to Be Reproduced", year: 1937, image: "/Not to Be Reproduced.jpg" },
 ];
 
@@ -28,7 +28,7 @@ export default function ReturnToBelgium() {
     const [isSliding, setIsSliding] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {

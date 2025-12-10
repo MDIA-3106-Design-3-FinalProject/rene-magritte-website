@@ -19,13 +19,20 @@ export default function Death() {
     const [rainStopped, setRainStopped] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {
         setIsTransitioning(true);
         setTimeout(() => {
             router.push("/pages/RecognitionAndLegacy");
+        }, 600);
+    };
+
+    const handleRoom = () => {
+        setIsTransitioning(true);
+        setTimeout(() => {
+            router.push("/pages/Room");
         }, 600);
     };
 
@@ -188,6 +195,11 @@ export default function Death() {
                             type='back'
                             onClick={handleBack}>
                             BACK
+                        </Button>
+                        <Button
+                            type='regular'
+                            onClick={handleRoom}>
+                            ROOM
                         </Button>
                     </div>
                 </div>

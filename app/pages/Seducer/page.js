@@ -19,7 +19,7 @@ export default function Seducer() {
     const containerRef = useRef(null);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {
@@ -78,7 +78,7 @@ export default function Seducer() {
                     <div className={styles.imageWrapper}>
                         {!showSea ? (
                             <Image
-                                src='/The Seducer.jpg'
+                                src='/The Seducer-2.png'
                                 alt='The Seducer'
                                 fill
                                 className={styles.backgroundImage}
@@ -88,7 +88,7 @@ export default function Seducer() {
                         ) : (
                             <>
                                 <Image
-                                    src='/The Seducer.jpg'
+                                    src='/The Seducer-2.png'
                                     alt='The Seducer'
                                     fill
                                     className={styles.backgroundImage}

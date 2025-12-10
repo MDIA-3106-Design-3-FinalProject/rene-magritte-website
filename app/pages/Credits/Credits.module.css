@@ -2,10 +2,11 @@
     display: flex;
     min-height: 100vh;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: relative;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: var(--background);
     color: var(--foreground);
 }
@@ -13,157 +14,274 @@
 .loadingContainer {
     position: relative;
     width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.buttonContainer {
-    position: absolute;
-    bottom: 10%;
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: space-between;
-    opacity: 0;
-    animation: fadeInButton 1s ease-in-out 2.5s forwards;
-    z-index: 10000;
-}
-
-/* TEXTBOX STYLING  */
-.TextContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40%;
-    max-width: 600px;
-    opacity: 0;
-    animation: fadeInText 1s ease-in-out 2.5s forwards;
-    z-index: 5000;
-}
-
-.TextItems {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: var(--font-size-small); /* 16px */
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px;
+    padding-bottom: var(--font-size-medium);
 }
 
 /* TIMELINE BAR STYLING */
 .Timeline {
     position: relative;
     z-index: 100000;
+    width: 100%;
 }
 
-.bowlerHat,
-.apple {
-    z-index: 9999;
+/* Content Grid Layout */
+.contentGrid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: var(--font-size-medium);
+    width: 100%;
+    max-width: 1400px;
+    padding: var(--font-size-medium);
+    margin-top: var(--font-size-medium);
+    z-index: 1000;
 }
 
-/* HAT AND APPLE STYLING  */
-.bowlerHat {
+/* Artworks Grid */
+.artworksGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--font-size-extra-small);
+    align-content: start;
+}
+
+
+.artworkThumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--off-white-500);
+}
+
+.artworkThumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.thumbnailImage {
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* TEXTBOX STYLING */
+.TextContainer {
+    width: 100%;
+    opacity: 1;
+    z-index: 5000;
+}
+
+.TextItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-small);
+}
+
+.TextItems h1 {
+    font-family: "Georgia", serif;
+    font-size: var(--font-size-large);
+    font-weight: var(--font-bold);
+    color: var(--dark-blue-500);
+    margin: 0;
+    margin-bottom: var(--font-size-small);
+}
+
+.TextItems p {
+    font-size: var(--font-size-regular);
+    color: var(--dark-blue-500);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.TextItems a,
+.TextItems .link {
+    color: var(--dark-blue-500);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.TextItems a:hover,
+.TextItems .link:hover {
+    color: var(--light-blue-100);
+    text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    animation: fadeInModal 0.3s ease-out;
+    cursor: pointer;
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modalContent {
+    position: relative;
+    max-width: 95vw;
+    max-height: 95vh;
+    width: 95vw;
+    height: 95vh;
+    background: var(--background);
+    border-radius: 12px;
+    padding: var(--font-size-medium);
+    box-shadow: var(--shadow-default);
+    cursor: default;
+    animation: slideInModal 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--font-size-small);
+}
+
+@keyframes slideInModal {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.closeButton {
     position: absolute;
-    top: 5%;
-    left: 5%;
-    z-index: 2;
-    opacity: 0;
-    rotate: -30deg;
-    animation: fadeInFloat 1.5s ease-in-out 0.5s forwards,
-        float 3s ease-in-out 2.5s infinite;
+    top: var(--font-size-small);
+    right: var(--font-size-small);
+    background: var(--off-white-500);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--dark-blue-500);
+    transition: all 0.2s ease;
+    z-index: 10;
 }
 
-.hatImage {
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-    height: auto;
+.closeButton:hover {
+    background: var(--light-blue-100);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-hover);
 }
 
-.apple {
+.modalImageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    max-height: 85vh;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--off-white-500);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalImage {
+    object-fit: contain;
+}
+
+.modalTitle {
+    font-family: "Georgia", serif;
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-semibold);
+    color: var(--dark-blue-500);
+    margin: 0;
+    text-align: center;
+}
+
+.navArrow {
     position: absolute;
-    bottom: 0%;
-    right: 8%;
-    z-index: 2;
-    opacity: 0;
-    rotate: 10deg;
-    animation: fadeInFloat 1.5s ease-in-out 0.8s forwards,
-        float 3s ease-in-out 2.8s infinite;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--off-white-500);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--dark-blue-500);
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: var(--shadow-default);
 }
 
-.appleImage {
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-    height: auto;
+.navArrow:hover {
+    background: var(--light-blue-100);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--shadow-hover);
 }
 
-/* ANIMATIONS */
-@keyframes fadeInFloat {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.navArrow:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
-@keyframes float {
-    0%,
-    100% {
-        transform: translateY(0px);
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .contentGrid {
+        grid-template-columns: 1fr;
+        gap: var(--font-size-medium);
     }
-    50% {
-        transform: translateY(-20px);
-    }
-}
 
-@keyframes fadeInLogo {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
+    .TextContainer {
+        order: -1;
     }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
 
-@keyframes fadeInButton {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(var(--font-size-regular)); /* 20px */
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-@keyframes fadeInText {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -40%);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+    .artworksGrid {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .bowlerHat {
-        top: 8%;
-        left: 5%;
+    .contentGrid {
+        padding: var(--font-size-small);
     }
 
-    .apple {
-        top: 12%;
-        right: 8%;
+    .artworksGrid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--font-size-extra-small);
     }
 
-    .logo {
-        width: 80%;
-        max-width: 400px;
-        height: auto;
+    .modalContent {
+        max-width: 95vw;
+        padding: var(--font-size-small);
+    }
+
+    .modalImageContainer {
+        max-width: 100%;
     }
 }

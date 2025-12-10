@@ -1,5 +1,6 @@
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import AudioWrapper from "./components/AudioWrapper";
 
 const openSansSemiCondensed = Open_Sans({
     variable: "--font-open-sans",
@@ -23,7 +24,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang='en' className={openSansSemiCondensed.variable}>
-            <body>{children}</body>
+            <body>
+                <AudioWrapper>{children}</AudioWrapper>
+            </body>
         </html>
     );
 }

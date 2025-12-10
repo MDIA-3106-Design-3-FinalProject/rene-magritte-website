@@ -11,12 +11,12 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "The Empire of Light", year: 1954, image: "/The empire of light.jpg" },
+    { name: "The Empire of Light", year: 1954, image: "/The empire of light-2.png" },
     { name: "The Pilgrim", year: 1966, image: "/The Pilgrim.jpg" },
-    { name: "The Art of Living", year: 1967, image: "/The art of living.jpg" },
-    { name: "Man in a Bowler Hat", year: 1964, image: "/Man in a Bowler Hat.webp" },
+    { name: "The Art of Living", year: 1967, image: "/The art of living-2.png" },
+    { name: "Man in a Bowler Hat", year: 1964, image: "/Man in a Bowler Hat-2.png" },
     { name: "The Big Family", year: 1963, image: "/The Big Family.jpg" },
-    { name: "The Son of Man", year: 1964, image: "/The Son of Men.jpg" },
+    { name: "The Son of Man", year: 1964, image: "/The Son of Men-2.png" },
 ];
 
 export default function RecognitionAndLegacy() {
@@ -29,7 +29,7 @@ export default function RecognitionAndLegacy() {
     const [isSliding, setIsSliding] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {

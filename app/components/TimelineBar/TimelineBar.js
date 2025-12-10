@@ -4,14 +4,18 @@ import YearButton from "../YearButton/YearButton";
 import styles from "./TimelineBar.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useAudio } from "@/app/contexts/AudioContext";
 
 export default function TimelineBar({ onYearChange, initialYear }) {
     const router = useRouter();
+    const { isPlaying, togglePlayPause } = useAudio();
     const [activeYear, setActiveYear] = useState(initialYear || null);
     const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
     const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+    const [isAudioHovered, setIsAudioHovered] = useState(false);
     const yearDropdownRef = useRef(null);
     const hamburgerRef = useRef(null);
+    const audioButtonRef = useRef(null);
 
     const years = [1898, 1916, 1920, 1926, 1928, 1930, 1943, 1950, 1967];
 
@@ -43,6 +47,10 @@ export default function TimelineBar({ onYearChange, initialYear }) {
             router.push("/pages/Death");
         }
         // Add more year-to-page mappings as needed
+    };
+    const handleRoom = () => {
+        router.push("/pages/Room");
+        setIsHamburgerOpen(false);
     };
     const handleAbout = () => {
         router.push("/pages/About");
@@ -157,6 +165,11 @@ export default function TimelineBar({ onYearChange, initialYear }) {
                     {/* Desktop Navigation Links */}
                     <div className={styles.navLinks}>
                         <p
+                            onClick={handleRoom}
+                            className={styles.navLink}>
+                            Room
+                        </p>
+                        <p
                             onClick={handleAbout}
                             className={styles.navLink}>
                             About
@@ -166,6 +179,36 @@ export default function TimelineBar({ onYearChange, initialYear }) {
                             className={styles.navLink}>
                             Credits
                         </p>
+                        {/* Audio Play/Pause Button */}
+                        <div 
+                            className={styles.audioButtonContainer}
+                            onMouseEnter={() => setIsAudioHovered(true)}
+                            onMouseLeave={() => setIsAudioHovered(false)}
+                            ref={audioButtonRef}>
+                            <button
+                                className={styles.audioButton}
+                                onClick={togglePlayPause}
+                                aria-label={isPlaying ? "Pause audio" : "Play audio"}>
+                                {isPlaying ? (
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 4H6V20H10V4Z" fill="currentColor"/>
+                                        <path d="M18 4H14V20H18V4Z" fill="currentColor"/>
+                                    </svg>
+                                ) : (
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                    </svg>
+                                )}
+                            </button>
+                            {isAudioHovered && (
+                                <div 
+                                    className={styles.audioInfoDropdown}
+                                    onMouseEnter={() => setIsAudioHovered(true)}
+                                    onMouseLeave={() => setIsAudioHovered(false)}>
+                                    <p className={styles.audioInfoText}>Erik Satie - Gnossiennes 1-6</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     {/* Mobile/Tablet Hamburger Menu */}
@@ -207,6 +250,11 @@ export default function TimelineBar({ onYearChange, initialYear }) {
                                         strokeLinejoin='round'
                                     />
                                     </svg>
+                                </button>
+                                <button
+                                    className={styles.hamburgerItem}
+                                    onClick={handleRoom}>
+                                    Room
                                 </button>
                                 <button
                                     className={styles.hamburgerItem}

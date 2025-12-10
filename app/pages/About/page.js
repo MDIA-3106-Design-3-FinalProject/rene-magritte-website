@@ -13,10 +13,10 @@ export default function About() {
     const router = useRouter();
 
     const handleStart = () => {
-        console.log("Start button clicked");
+        // Start button handler
     };
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
     return (
         <>
@@ -48,7 +48,7 @@ export default function About() {
                     {/* Apple */}
                     <div className={styles.apple}>
                         <Image
-                            src='/apple.png'
+                            src='/apple-4.png'
                             alt='Apple'
                             width={300}
                             height={300}

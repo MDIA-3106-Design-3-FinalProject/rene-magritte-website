@@ -17,7 +17,7 @@ export default function Surrealism() {
     const [contentVisible, setContentVisible] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {
@@ -60,7 +60,7 @@ export default function Surrealism() {
                 <div className={`${styles.loadingContainer} ${contentVisible ? styles.contentVisible : ''}`}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src='/The lost jobey.webp'
+                            src='/The lost jobey-2.png'
                             alt='The lost jobey'
                             fill
                             className={styles.backgroundImage}

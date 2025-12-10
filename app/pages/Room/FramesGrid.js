@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
 import styles from "./FramesGrid.module.css";
 
 export default function FramesGrid() {
     const router = useRouter();
+    const [pupilPosition, setPupilPosition] = useState({ x: 0, y: 0 });
+    const falseMirrorFrameRef = useRef(null);
 
     const handleChildFrameClick = () => {
         router.push("/pages/Birth");
@@ -15,6 +18,31 @@ export default function FramesGrid() {
         router.push("/pages/Seducer");
     };
 
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (falseMirrorFrameRef.current) {
+                const rect = falseMirrorFrameRef.current.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const deltaX = e.clientX - centerX;
+                const deltaY = e.clientY - centerY;
+                // Limit pupil movement to a smaller radius (about 8px)
+                const maxDistance = 8;
+                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                const limitedDistance = Math.min(distance, maxDistance);
+                const angle = Math.atan2(deltaY, deltaX);
+                const limitedX = Math.cos(angle) * limitedDistance;
+                const limitedY = Math.sin(angle) * limitedDistance;
+                setPupilPosition({ x: limitedX, y: limitedY });
+            }
+        };
+
+        document.addEventListener("mousemove", handleMouseMove);
+        return () => {
+            document.removeEventListener("mousemove", handleMouseMove);
+        };
+    }, []);
+
     return (
         <div className={styles.framesGrid}>
             {/* Top Row - 5 frames */}
@@ -23,7 +51,7 @@ export default function FramesGrid() {
                 style={{ top: "10%", left: "5%" }}
                 onClick={handleChildFrameClick}>
                 <Image
-                    src='/Rene Magritte - Child.jpg'
+                    src='/Rene-Magritte-Child-2.png'
                     alt='Rene Magritte - Child'
                     width={180}
                     height={220}
@@ -42,7 +70,7 @@ export default function FramesGrid() {
                 style={{ top: "10%", left: "17%" }}
                 onClick={handleSeducerFrameClick}>
                 <Image
-                    src='/The Seducer.jpg'
+                    src='/The Seducer-2.png'
                     alt='The Seducer'
                     width={180}
                     height={220}
@@ -57,32 +85,41 @@ export default function FramesGrid() {
                 />
             </div>
             <div
+                ref={falseMirrorFrameRef}
                 className={`${styles.frame} ${styles.clickableFrame} ${styles.falseMirrorFrame}`}
                 style={{ top: "10%", left: "30%" }}>
                 <div className={styles.falseMirrorContent}>
                     <div className={styles.skyWrapper}>
                         <Image
-                            src='/sky.jpg'
+                            src='/sky-2.png'
                             alt='Sky background'
                             width={180}
                             height={220}
                             className={styles.skyImage}
                         />
                         <Image
-                            src='/sky.jpg'
+                            src='/sky-2.png'
                             alt='Sky background duplicate'
                             width={180}
                             height={220}
                             className={styles.skyImage}
                         />
                     </div>
-                    <Image
-                        src='/eye.png'
-                        alt='Eye'
-                        width={180}
-                        height={220}
-                        className={styles.eyeImage}
-                    />
+                    <div className={styles.eyeWrapper}>
+                        <Image
+                            src='/eye-3.png'
+                            alt='Eye'
+                            width={180}
+                            height={220}
+                            className={styles.eyeImage}
+                        />
+                        <div 
+                            className={styles.pupil}
+                            style={{
+                                transform: `translate(${pupilPosition.x}px, ${pupilPosition.y}px)`
+                            }}
+                        ></div>
+                    </div>
                 </div>
                 <Image
                     src='/frame.png'
@@ -96,7 +133,7 @@ export default function FramesGrid() {
                 className={`${styles.frame} ${styles.clickableFrame}`}
                 style={{ top: "10%", left: "60%" }}>
                 <Image
-                    src='/The Human Condition.webp'
+                    src='/The Human Condition-2.png'
                     alt='The Human Condition'
                     width={180}
                     height={220}
@@ -114,7 +151,7 @@ export default function FramesGrid() {
                 className={`${styles.frame} ${styles.clickableFrame}`}
                 style={{ top: "10%", left: "70%" }}>
                 <Image
-                    src='/Forethought.png'
+                    src='/Forethought-2.png'
                     alt='Forethought'
                     width={180}
                     height={220}
@@ -132,7 +169,7 @@ export default function FramesGrid() {
                 className={`${styles.frame} ${styles.clickableFrame}`}
                 style={{ top: "10%", left: "80%" }}>
                 <Image
-                    src='/Mes Reves.jpg'
+                    src='/mes-reves-2.png'
                     alt='Mes Reves'
                     width={180}
                     height={220}
@@ -152,7 +189,7 @@ export default function FramesGrid() {
                 className={`${styles.frame} ${styles.clickableFrame}`}
                 style={{ top: "38%", left: "5%" }}>
                 <Image
-                    src='/The lost jobey.webp'
+                    src='/The lost jobey-2.png'
                     alt='The lost jobey'
                     width={180}
                     height={220}
@@ -170,7 +207,7 @@ export default function FramesGrid() {
                 className={`${styles.frame} ${styles.clickableFrame}`}
                 style={{ top: "38%", left: "17%" }}>
                 <Image
-                    src='/The art of living.jpg'
+                    src='/The art of living-2.png'
                     alt='The art of living'
                     width={180}
                     height={220}

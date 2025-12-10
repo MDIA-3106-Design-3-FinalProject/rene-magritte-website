@@ -14,7 +14,7 @@ export default function Home() {
     const [isTransitioning, setIsTransitioning] = useState(false);
 
     const handleStart = () => {
-        console.log("Start button clicked");
+        // Start button handler
         setIsTransitioning(true);
         // Wait for fade out animation to complete before navigating
         setTimeout(() => {
@@ -54,7 +54,7 @@ export default function Home() {
                 {/* Apple */}
                 <div className={styles.apple}>
                     <Image
-                        src='/apple.png'
+                        src='/apple-4.png'
                         alt='Apple'
                         width={300}
                         height={300}

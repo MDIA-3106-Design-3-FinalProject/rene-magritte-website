@@ -126,3 +126,94 @@
     opacity: 0;
     transition: opacity 0.6s ease-in-out;
 }
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    animation: fadeInPopup 0.3s ease-in-out;
+    pointer-events: auto;
+}
+
+@keyframes fadeInPopup {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.popupContent {
+    position: relative;
+    background: var(--off-white-500);
+    padding: var(--font-size-small) 48px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: var(--shadow-default);
+    animation: slideInPopup 0.3s ease-out;
+    text-align: center;
+}
+
+@keyframes slideInPopup {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.closeButton {
+    position: absolute;
+    top: var(--font-size-small);
+    right: var(--font-size-small);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark-blue-500);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    line-height: 1;
+    padding: 0;
+}
+
+.closeButton:hover {
+    background: var(--light-blue-100);
+    color: var(--dark-blue-500);
+    transform: scale(1.1);
+}
+
+.popupTitle {
+    font-family: "Georgia", serif;
+    font-size: var(--font-size-large);
+    font-weight: var(--font-bold);
+    color: var(--dark-blue-500);
+    margin: 0;
+    margin-bottom: var(--font-size-small);
+    padding-right: calc(32px + var(--font-size-small));
+}
+
+.popupMessage {
+    margin: 0;
+    font-size: var(--font-size-small);
+    line-height: 1.6;
+    color: var(--dark-blue-500);
+    padding-right: calc(32px + var(--font-size-small));
+}

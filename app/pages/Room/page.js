@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
@@ -14,12 +15,18 @@ export default function Room() {
     const [translateX, setTranslateX] = useState(0);
     const [imageWidth, setImageWidth] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [showPopup, setShowPopup] = useState(true);
+    const [mounted, setMounted] = useState(false);
     const containerRef = useRef(null);
     const startXRef = useRef(0);
     const translateXRef = useRef(0);
 
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     useEffect(() => {
@@ -101,6 +108,10 @@ export default function Room() {
         setIsDragging(false);
     }, []);
 
+    const handleClosePopup = () => {
+        setShowPopup(false);
+    };
+
     useEffect(() => {
         if (isDragging) {
             document.addEventListener("mousemove", handleMouseMove);
@@ -113,61 +124,89 @@ export default function Room() {
         }
     }, [isDragging, handleMouseMove, handleMouseUp]);
 
+    const popupContent =
+        showPopup && mounted ? (
+            <div className={styles.popup}>
+                <div className={styles.popupContent}>
+                    <button
+                        className={styles.closeButton}
+                        onClick={handleClosePopup}>
+                        ×
+                    </button>
+                    <h2 className={styles.popupTitle}>
+                        Welcome to Rene's home
+                    </h2>
+                    <p className={styles.popupMessage}>
+                        Choose your own way to explore Rene's work: <br />
+                        1. Click on the art frames; <br />
+                        2. Use the next/back Buttons;
+                        <br />
+                        3. Or select the year on the timeline at the top.
+                    </p>
+                </div>
+            </div>
+        ) : null;
+
     return (
-        <div
-            className={`${styles.roomContainer} ${isTransitioning ? styles.fadeOut : ''}`}
-            ref={containerRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            style={{ cursor: isDragging ? "grabbing" : "grab" }}>
-            {/* Timeline Bar */}
-            <div className={styles.timelineBarWrapper}>
-                <TimelineBar onYearChange={handleYearChange} />
-            </div>
-
-            {/* Background Image Container */}
+        <>
+            {mounted && createPortal(popupContent, document.body)}
             <div
-                className={styles.backgroundWrapper}
-                style={{
-                    transform: `translateX(${translateX}px)`,
-                    width: imageWidth > 0 ? `${imageWidth}px` : "auto",
-                }}>
-                <Image
-                    src='/room.png'
-                    alt='Room background'
-                    width={4000}
-                    height={1600}
-                    className={styles.backgroundImage}
-                    priority
-                    unoptimized
-                />
-            </div>
+                className={`${styles.roomContainer} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}
+                ref={containerRef}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                style={{ cursor: isDragging ? "grabbing" : "grab" }}>
+                {/* Timeline Bar */}
+                <div className={styles.timelineBarWrapper}>
+                    <TimelineBar onYearChange={handleYearChange} />
+                </div>
 
-            {/* Content */}
-            <div
-                className={styles.contentWrapper}
-                style={{
-                    transform: `translateX(${translateX}px)`,
-                    width: imageWidth > 0 ? `${imageWidth}px` : "100%",
-                }}>
-                <FramesGrid />
-            </div>
+                {/* Background Image Container */}
+                <div
+                    className={styles.backgroundWrapper}
+                    style={{
+                        transform: `translateX(${translateX}px)`,
+                        width: imageWidth > 0 ? `${imageWidth}px` : "auto",
+                    }}>
+                    <Image
+                        src='/room.png'
+                        alt='Room background'
+                        width={4000}
+                        height={1600}
+                        className={styles.backgroundImage}
+                        priority
+                        unoptimized
+                    />
+                </div>
 
-            {/* Navigation Buttons */}
-            <div className={styles.backButton}>
-                <Button
-                    type='back'
-                    onClick={handleBack}>
-                    BACK
-                </Button>
+                {/* Content */}
+                <div
+                    className={styles.contentWrapper}
+                    style={{
+                        transform: `translateX(${translateX}px)`,
+                        width: imageWidth > 0 ? `${imageWidth}px` : "100%",
+                    }}>
+                    <FramesGrid />
+                </div>
+
+                {/* Navigation Buttons */}
+                <div className={styles.backButton}>
+                    <Button
+                        type='back'
+                        onClick={handleBack}>
+                        BACK
+                    </Button>
+                </div>
+                <div className={styles.nextButton}>
+                    <Button
+                        type='next'
+                        onClick={handleNext}>
+                        NEXT
+                    </Button>
+                </div>
             </div>
-            <div className={styles.nextButton}>
-                <Button
-                    type='next'
-                    onClick={handleNext}>
-                    NEXT
-                </Button>
-            </div>
-        </div>
+        </>
     );
 }

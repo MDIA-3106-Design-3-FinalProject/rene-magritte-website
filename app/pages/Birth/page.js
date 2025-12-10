@@ -16,7 +16,7 @@ export default function Birth() {
     const [isTransitioning, setIsTransitioning] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {
@@ -44,7 +44,7 @@ export default function Birth() {
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         <Image
-                            src='/Rene Magritte - Child.jpg'
+                            src='/Rene-Magritte-Child-2.png'
                             alt='Rene Magritte as a child'
                             fill
                             className={styles.backgroundImage}

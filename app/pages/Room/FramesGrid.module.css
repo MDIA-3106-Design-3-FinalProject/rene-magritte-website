@@ -93,6 +93,15 @@
     flex-shrink: 0;
 }
 
+.eyeWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
 .eyeImage {
     position: absolute;
     top: 0;
@@ -101,7 +110,22 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    z-index: 2;
+}
+
+.pupil {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    background: var(--black-500);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
 }
 
 @keyframes skyMoveHorizontal {

@@ -11,12 +11,12 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Mes Reves", year: 1912, image: "/Mes Reves.jpg" },
-    { name: "Marche des Snobs", year: 1926, image: "/Marche des Snobs.webp" },
+    { name: "Mes Reves", year: 1912, image: "/mes-reves-2.png" },
+    { name: "Marche des Snobs", year: 1926, image: "/Marche des Snobs-4.png" },
     {
         name: "Le tango des aveux",
         year: 1925,
-        image: "/Le tango des aveux.jpg",
+        image: "/Le tango des aveux-2.png",
     },
     { name: "Landscape", year: 1926, image: "/Landscape.jpg" },
 ];
@@ -31,7 +31,7 @@ export default function EarlyCareer() {
     const [isSliding, setIsSliding] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {

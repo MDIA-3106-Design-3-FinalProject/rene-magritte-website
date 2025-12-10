@@ -17,7 +17,7 @@ export default function Home() {
     const [reneVisible, setReneVisible] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {
@@ -32,7 +32,7 @@ export default function Home() {
     };
 
     const handleGolcondaClick = () => {
-        console.log("Golconda button clicked");
+        // Golconda button handler
     };
 
     const handleMinimize = () => {

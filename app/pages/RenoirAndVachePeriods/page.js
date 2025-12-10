@@ -11,9 +11,9 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Forethought", year: 1943, image: "/Forethought.png" },
+    { name: "Forethought", year: 1943, image: "/Forethought-2.png" },
     { name: "The Clearing", year: 1943, image: "/The Clearing.jpeg" },
-    { name: "Lyricism", year: 1943, image: "/Lyricism.jpg" },
+    { name: "Lyricism", year: 1943, image: "/Lyricism-2.png" },
 ];
 
 export default function RenoirAndVachePeriods() {
@@ -26,7 +26,7 @@ export default function RenoirAndVachePeriods() {
     const [isSliding, setIsSliding] = useState(false);
 
     const handleYearChange = (year) => {
-        console.log("Selected year:", year);
+        // Year change handler
     };
 
     const handleBack = () => {

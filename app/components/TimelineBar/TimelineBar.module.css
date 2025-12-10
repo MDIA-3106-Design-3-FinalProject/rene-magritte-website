@@ -217,6 +217,71 @@
     border-radius: var(--font-size-regular);
 }
 
+/* Audio Button */
+.audioButtonContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: var(--font-size-small);
+}
+
+.audioButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 50%;
+    background: var(--off-white-500);
+    border: none;
+    cursor: pointer;
+    color: var(--dark-blue-500);
+    transition: all 0.3s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.audioButton:hover {
+    background: var(--light-blue-100);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-hover);
+}
+
+.audioInfoDropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--background);
+    border-radius: 8px;
+    padding: 8px var(--font-size-small);
+    box-shadow: var(--shadow-default);
+    white-space: nowrap;
+    z-index: 100002;
+    animation: fadeInAudioInfo 0.2s ease-out;
+    pointer-events: auto;
+}
+
+@keyframes fadeInAudioInfo {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.audioInfoText {
+    margin: 0;
+    font-family: var(--font-open-sans), "Open Sans SemiCondensed", sans-serif;
+    font-size: var(--font-size-extra-small);
+    color: var(--dark-blue-500);
+    font-weight: var(--font-semibold);
+}
+
 /* Hamburger Menu (Mobile/Tablet) */
 .hamburgerMenu {
     display: none;
