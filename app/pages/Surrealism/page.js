@@ -51,13 +51,19 @@ export default function Surrealism() {
 
     return (
         <>
-            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
+            <div
+                className={`${styles.page} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 {/* Dark fade overlay - curtain effect */}
                 <div className={styles.curtainLeft}></div>
                 <div className={styles.curtainRight}></div>
 
                 {/* Content - appears after fade */}
-                <div className={`${styles.loadingContainer} ${contentVisible ? styles.contentVisible : ''}`}>
+                <div
+                    className={`${styles.loadingContainer} ${
+                        contentVisible ? styles.contentVisible : ""
+                    }`}>
                     <div className={styles.imageWrapper}>
                         <Image
                             src='/The lost jobey-2.png'
@@ -129,18 +135,36 @@ export default function Surrealism() {
                                     <>
                                         <h1>Surrealism</h1>
                                         <p>
-                                            In 1925, Magritte moved to Brussels
-                                            and began creating works that would
-                                            define the Surrealist movement.
+                                            In <strong>1926</strong>, Magritte
+                                            created{" "}
+                                            <strong>
+                                                The Lost Jockey (1926)
+                                            </strong>
+                                            , a work that foreshadowed his shift
+                                            into <strong>surrealism.</strong>
+                                            During the mid-to-late 1920s, he
+                                            began moving away from commercial
+                                            illustration toward a personal
+                                            visual language focused on mystery
+                                            and unexpected juxtapositions.
                                         </p>
                                         <p>
-                                            His paintings challenged reality,
-                                            blending the ordinary with the
-                                            extraordinary in ways that continue
-                                            to captivate audiences today.
+                                            Through works like this, Magritte
+                                            blurred the boundaries between dream
+                                            and reason. He
+                                            <strong>
+                                                {" "}
+                                                transformed ordinary elements
+                                                into strange tableaux
+                                            </strong>
+                                            , hinting at hidden layers beyond
+                                            the visible — a theme that would
+                                            define much of his later work.
                                         </p>
-                                        <button className={styles.artworkButton}>
-                                            The Lost Jockey — 1925
+
+                                        <button
+                                            className={styles.artworkButton}>
+                                            The Lost Jockey — 1926
                                         </button>
                                     </>
                                 )}
@@ -165,4 +189,3 @@ export default function Surrealism() {
         </>
     );
 }
-

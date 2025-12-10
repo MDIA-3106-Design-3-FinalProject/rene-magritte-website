@@ -11,9 +11,36 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "The False Mirror", year: 1928, image: null, isEyeComposition: true },
-    { name: "The Treachery of Images", year: 1929, image: "/The Treachery of Images.webp", isEyeComposition: false },
-    { name: "The Lovers I", year: 1928, image: "/The Lovers I-2.png", isEyeComposition: false },
+    {
+        name: "The False Mirror",
+        year: 1928,
+        image: null,
+        isEyeComposition: true,
+        description: [
+            "In his <strong>early Paris years</strong>, Magritte focused on <strong>quiet, precise images</strong> that created mystery without exaggeration. He preferred <strong>clarity over chaos</strong>, building tension through subtle shifts rather than dramatic effects.",
+            "<strong>The False Mirror (1928)</strong> reflects this approach. By replacing the eye’s pupil with an open sky, Magritte turns vision into a <strong>paradox</strong>—suggesting that seeing is shaped as much by <strong>imagination</strong> as by reality.",
+        ],
+    },
+    {
+        name: "The Treachery of Images",
+        year: 1929,
+        image: "/The Treachery of Images.webp",
+        isEyeComposition: false,
+        description: [
+            "During this period, Magritte began exploring how <strong>images and words</strong> influence what we believe to be true. He used ordinary objects but presented them in ways that <strong>challenged viewers’ assumptions.</strong>",
+            "<strong>The Treachery of Images (1929)</strong> is a perfect example. The painted pipe paired with “<strong>This is not a pipe</strong>” reminds us that an image <strong>represents</strong>, but never becomes, the real thing.",
+        ],
+    },
+    {
+        name: "The Lovers I",
+        year: 1928,
+        image: "/The Lovers I-2.png",
+        isEyeComposition: false,
+        description: [
+            "Magritte used his early Paris period to explore themes of <strong>intimacy and distance.</strong> He created scenes that felt <strong>familiar yet emotionally unreachable</strong>, revealing the quiet tensions within everyday life.",
+            "<strong>The Lovers (1928)</strong> shows this clearly. Two people kiss, but their faces are veiled, turning a simple embrace into a reflection on <strong>desire</strong>, <strong>separation</strong>, and the limits of knowing one another.",
+        ],
+    },
 ];
 
 export default function EarlyWork() {
@@ -109,9 +136,12 @@ export default function EarlyWork() {
 
             // Limit pupil movement to stay within eye bounds
             // Calculate maxDistance based on viewport size (smaller dimension / 8)
-            const maxDistance = Math.min(window.innerWidth, window.innerHeight) / 8;
-            const distance = Math.sqrt(relativeX * relativeX + relativeY * relativeY);
-            
+            const maxDistance =
+                Math.min(window.innerWidth, window.innerHeight) / 8;
+            const distance = Math.sqrt(
+                relativeX * relativeX + relativeY * relativeY
+            );
+
             let finalX = relativeX;
             let finalY = relativeY;
 
@@ -129,8 +159,10 @@ export default function EarlyWork() {
 
     return (
         <>
-            <div 
-                className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
+            <div
+                className={`${styles.page} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 {/* Artwork images wrapper */}
                 <div className={styles.imageWrapper}>
                     {isSliding && artworks[prevArtworkIndex].image && (
@@ -189,7 +221,9 @@ export default function EarlyWork() {
                 {/* Eye with pupil that follows mouse - only show for eye composition */}
                 {currentArtwork.isEyeComposition && (
                     <div className={styles.eyeContainer}>
-                        <div ref={eyeRef} className={styles.eyeWrapper}>
+                        <div
+                            ref={eyeRef}
+                            className={styles.eyeWrapper}>
                             <Image
                                 src='/eye-3.png'
                                 alt='Eye'
@@ -197,18 +231,20 @@ export default function EarlyWork() {
                                 className={styles.eyeImage}
                                 priority
                             />
-                            <div 
+                            <div
                                 className={styles.pupil}
                                 style={{
-                                    transform: `translate(${pupilPosition.x}px, ${pupilPosition.y}px)`
-                                }}
-                            ></div>
+                                    transform: `translate(${pupilPosition.x}px, ${pupilPosition.y}px)`,
+                                }}></div>
                         </div>
                     </div>
                 )}
 
                 {/* Content - appears after fade transforms */}
-                <div className={`${styles.loadingContainer} ${contentVisible ? styles.contentVisible : ''}`}>
+                <div
+                    className={`${styles.loadingContainer} ${
+                        contentVisible ? styles.contentVisible : ""
+                    }`}>
                     <div className={styles.Timeline}>
                         <TimelineBar
                             onYearChange={handleYearChange}
@@ -268,18 +304,17 @@ export default function EarlyWork() {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>Early Work</h1>
-                                        <p>
-                                            Magritte's early works explored the
-                                            boundaries between reality and
-                                            illusion, setting the foundation for
-                                            his later surrealist masterpieces.
-                                        </p>
-                                        <p>
-                                            His unique vision challenged viewers
-                                            to question what they see and what
-                                            they believe.
-                                        </p>
+                                        <h1>Early Work (Paris)</h1>
+                                        {currentArtwork.description.map(
+                                            (text, index) => (
+                                                <p
+                                                    key={index}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: text,
+                                                    }}
+                                                />
+                                            )
+                                        )}
                                         <div className={styles.artworkCarousel}>
                                             <button
                                                 className={styles.carouselArrow}
@@ -348,4 +383,3 @@ export default function EarlyWork() {
         </>
     );
 }
-

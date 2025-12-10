@@ -11,14 +11,42 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Mes Reves", year: 1912, image: "/mes-reves-2.png" },
-    { name: "Marche des Snobs", year: 1926, image: "/Marche des Snobs-4.png" },
+    {
+        name: "Mes Rêves",
+        year: 1924,
+        image: "/mes-reves-2.png",
+        description: [
+            "By <strong>1916</strong>, Magritte began studying at the <strong>Académie Royale des Beaux-Arts in Brussels</strong>. His early jobs pushed him to think about <strong>bold forms, strong lines, and clear visual communication.</strong>",
+            "You can see these early graphic influences in <strong>Mes Rêves (1924)</strong>, where simplified <strong>forms, strong outlines,</strong> and theatrical staging reflect his transition from commercial art toward a more personal <strong>visual language.</strong>",
+        ],
+    },
+    {
+        name: "Marche des Snobs",
+        year: 1924,
+        image: "/Marche des Snobs-4.png",
+        description: [
+            "In the <strong>early 1920s</strong>, Magritte was navigating the <strong>Belgian art world</strong> while still doing commercial work to make a living. He spent these years experimenting with style, absorbing the visual energy of the Parisian avant-garde from afar.",
+            "These stylistic explorations appear clearly in <strong>Marché des Amants (1924)</strong>, where fragmented figures and graphic shapes show Magritte moving toward abstraction and learning how to blur the boundary between <strong>representation and imagination.</strong>",
+        ],
+    },
     {
         name: "Le tango des aveux",
         year: 1925,
         image: "/Le tango des aveux-2.png",
+        description: [
+            "By the <strong>mid-1920s</strong>, Magritte was producing <strong>illustrations and poster designs</strong> while continuing to develop his fine-art practice. He used these years to test new ideas, particularly how movement, gesture, and emotion could be expressed through simplified forms.",
+            "In <strong>Le Tango des Aveux (1925)</strong>, the elegantly <strong>elongated figures</strong> and rhythmic lines show Magritte experimenting with theatricality and visual harmony, hinting at the expressive language he would soon transform into something far more <strong>mysterious.</strong>",
+        ],
     },
-    { name: "Landscape", year: 1926, image: "/Landscape.jpg" },
+    {
+        name: "Landscape",
+        year: 1920,
+        image: "/Landscape.jpg",
+        description: [
+            "Before Magritte embraced surrealism, he explored <strong>Cubism and Futurism</strong>, inspired by artists like <strong>Léger and De Chirico.</strong> These early explorations allowed him to <strong>break down natural forms into shapes and planes</strong>, helping him understand how images could be constructed — and later, how they could be subverted.",
+            "<strong>Landscape (1920)</strong> reflects this developmental stage, with its <strong>geometric forms, dynamic angles, and bright palette.</strong> The painting shows Magritte learning how to distill the world into structure and color before abandoning realism altogether.",
+        ],
+    },
 ];
 
 export default function EarlyCareer() {
@@ -187,19 +215,16 @@ export default function EarlyCareer() {
                                 ) : (
                                     <>
                                         <h1>Early Career</h1>
-                                        <p>
-                                            In 1912, Magritte's mother
-                                            tragically took her own life by
-                                            drowning in the Sambre River. This
-                                            profound loss would deeply influence
-                                            his artistic vision.
-                                        </p>
-                                        <p>
-                                            The image of a veiled face, water,
-                                            and the mystery of what lies beneath
-                                            would become recurring themes in his
-                                            work.
-                                        </p>
+                                        {currentArtwork.description.map(
+                                            (text, index) => (
+                                                <p
+                                                    key={index}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: text,
+                                                    }}
+                                                />
+                                            )
+                                        )}
                                         <div className={styles.artworkCarousel}>
                                             <button
                                                 className={styles.carouselArrow}

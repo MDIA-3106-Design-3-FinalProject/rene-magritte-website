@@ -156,6 +156,7 @@
 .TextContainer :global(.textbox) {
     text-align: center;
     padding: var(--font-size-medium);
+    margin-bottom: 20px;
 }
 
 .TextContainer.minimized :global(.textbox) {
@@ -211,7 +212,7 @@
 
 .TextItems h1 {
     font-family: "Georgia", serif;
-    font-size: var(--font-size-large);
+    font-size: clamp(1.35rem, 2vw, 1.5rem);
     font-weight: var(--font-bold);
     color: var(--dark-blue-500);
     margin: 0;
@@ -221,7 +222,7 @@
 .TextItems p {
     font-size: var(--font-size-regular);
     color: var(--dark-blue-500);
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
     text-align: center;
 }
@@ -258,10 +259,11 @@
         top: calc(var(--font-size-small) + 60px);
     }
     .TextItems h1 {
-        font-size: var(--font-size-medium);
+        font-size: clamp(1.25rem, 2vw, 1.4rem);
     }
     .TextItems p {
-        font-size: var(--font-size-small);
+        font-size: calc(var(--font-size-small) * 0.95);
+        line-height: 1.45;
     }
 }
 

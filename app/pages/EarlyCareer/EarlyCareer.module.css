@@ -161,10 +161,10 @@
 /* TEXTBOX STYLING  */
 .TextContainer {
     position: absolute;
-    top: 50%;
+    top: 48%;
     right: 5%;
     transform: translateY(-50%);
-    width: 40%;
+    width: 42%;
     max-width: 600px;
     z-index: 5000;
     transition: all 0.3s ease;
@@ -186,6 +186,7 @@
 .TextContainer :global(.textbox) {
     text-align: center;
     padding: var(--font-size-medium);
+    margin-bottom: 32px;
 }
 
 .TextContainer.minimized :global(.textbox) {
@@ -194,6 +195,70 @@
     padding: var(--font-size-small) !important;
     width: auto;
     min-width: fit-content;
+}
+
+.TextItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-small);
+}
+
+.TextItems h1 {
+    font-family: "Georgia", serif;
+    font-size: clamp(1.28rem, 2vw, 1.42rem);
+    font-weight: var(--font-bold);
+    color: var(--dark-blue-500);
+    margin: 0 0 var(--font-size-small) 0;
+}
+
+.TextItems p {
+    font-size: calc(var(--font-size-regular) * 0.92);
+    color: var(--dark-blue-500);
+    line-height: 1.45;
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .TextContainer {
+        width: 46%;
+        max-width: 540px;
+    }
+
+    .TextContainer :global(.textbox) {
+        padding: calc(var(--font-size-medium) * 0.85);
+        margin-bottom: 20px;
+    }
+
+    .TextItems h1 {
+        font-size: clamp(1.2rem, 2vw, 1.35rem);
+    }
+
+    .TextItems p {
+        font-size: calc(var(--font-size-regular) * 0.88);
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 900px) {
+    .TextContainer {
+        width: 52%;
+        max-width: 500px;
+    }
+
+    .TextContainer :global(.textbox) {
+        padding: calc(var(--font-size-medium) * 0.75);
+        margin-bottom: 16px;
+    }
+
+    .TextItems h1 {
+        font-size: clamp(1.1rem, 2.4vw, 1.25rem);
+    }
+
+    .TextItems p {
+        font-size: calc(var(--font-size-regular) * 0.85);
+        line-height: 1.38;
+    }
 }
 
 .closeButton {

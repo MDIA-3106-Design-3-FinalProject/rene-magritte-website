@@ -111,7 +111,7 @@ export default function Seducer() {
                             <div className={styles.Timeline}>
                         <TimelineBar
                             onYearChange={handleYearChange}
-                            initialYear={1916}
+                            initialYear={1910}
                         />
                             </div>
 
@@ -167,23 +167,23 @@ export default function Seducer() {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>The Seducer</h1>
+                                        <h1>Early Tragedy</h1>
                                         <p>
-                                            In 1908, Magritte's family moved to
-                                            Châtelet, where his artistic
-                                            curiosity deepened. The landscape
-                                            around him began to shape his
-                                            perception of reality.
+                                            In 1912, Magritte's mother took her own life by drowning in the{" "}
+                                            <strong>River Sambre.</strong> He was{" "}
+                                            <strong>thirteen</strong> at the time. A long-standing local legend claims
+                                            that her body was found with her{" "}
+                                            <strong>nightdress covering her face</strong> and that{" "}
+                                            <strong>Magritte witnessed the scene — but recent research shows this story is likely untrue.</strong>
                                         </p>
                                         <p>
-                                            This period marked the beginning of
-                                            his fascination with the mysterious
-                                            and the surreal, elements that would
-                                            define his later work.
+                                            You can see this influence in <strong>The Seducer (1953),</strong> where the silhouette of a{" "}
+                                            <strong>ship fills not with solid form, but with shimmering sea and sky.</strong> Like many of his works, it reflects Magritte’s belief that what is{" "}
+                                            <strong>obscured or unexpected can reveal deeper truths than what is plainly visible.</strong>
                                         </p>
                                         <button
                                             className={styles.seducerButton}>
-                                            The Seducer — 1908
+                                            The Seducer — 1953
                                         </button>
                                     </>
                                 )}

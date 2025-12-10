@@ -17,7 +17,7 @@ export default function TimelineBar({ onYearChange, initialYear }) {
     const hamburgerRef = useRef(null);
     const audioButtonRef = useRef(null);
 
-    const years = [1898, 1916, 1920, 1926, 1928, 1930, 1943, 1950, 1967];
+    const years = [1898, 1912, 1916, 1926, 1928, 1930, 1943, 1950, 1967];
 
     const handleYearClick = (year) => {
         setActiveYear(year);
@@ -29,9 +29,9 @@ export default function TimelineBar({ onYearChange, initialYear }) {
         // Navigate to specific pages based on year
         if (year === 1898) {
             router.push("/pages/Birth");
-        } else if (year === 1916) {
+        } else if (year === 1912) {
             router.push("/pages/Seducer");
-        } else if (year === 1920) {
+        } else if (year === 1916) {
             router.push("/pages/EarlyCareer");
         } else if (year === 1926) {
             router.push("/pages/Surrealism");

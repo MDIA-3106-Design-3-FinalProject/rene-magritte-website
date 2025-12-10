@@ -40,7 +40,10 @@ export default function Birth() {
 
     return (
         <>
-            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
+            <div
+                className={`${styles.page} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         <Image
@@ -113,21 +116,27 @@ export default function Birth() {
                                     <>
                                         <h1>The 'Birth'</h1>
                                         <p>
-                                            René François Ghislain Magritte was
-                                            born in Lessines, Belgium. The
-                                            countryside became his first gallery
-                                            — misty fields and deep skies that
-                                            would echo through his canvases
-                                            forever.
+                                            <strong>
+                                                René François Ghislain Magritte
+                                            </strong>{" "}
+                                            was born in{" "}
+                                            <strong>Lessines, Belgium.</strong>{" "}
+                                            The countryside became his first
+                                            gallery — misty fields and deep
+                                            skies that would echo through his
+                                            canvases forever.
                                         </p>
                                         <p>
-                                            He grew up curious, often sketching
-                                            and daydreaming about the world
-                                            beyond the visible.
+                                            He grew up curious, often{" "}
+                                            <strong>
+                                                sketching and daydreaming
+                                            </strong>{" "}
+                                            about the world beyond the visible.
                                         </p>
                                         <p>
                                             Even then, he seemed to sense that
-                                            reality was only part of the picture.
+                                            reality was only part of the
+                                            picture.
                                         </p>
                                     </>
                                 )}
@@ -152,4 +161,3 @@ export default function Birth() {
         </>
     );
 }
-
