@@ -119,7 +119,7 @@ export default function Birth() {
                                             <strong>
                                                 René François Ghislain Magritte
                                             </strong>{" "}
-                                            was born in{" "}
+                                            was born in <strong>1898</strong> in{" "}
                                             <strong>Lessines, Belgium.</strong>{" "}
                                             The countryside became his first
                                             gallery — misty fields and deep
