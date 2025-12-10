@@ -11,11 +11,51 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "The Human Condition", year: 1933, image: "/The Human Condition-2.png" },
-    { name: "The Rape", year: 1934, image: "/The Rape-2.png" },
-    { name: "The Therapist", year: 1937, image: "/The therapist-2.png" },
-    { name: "Time Transfixed", year: 1938, image: "/Time Transfixed-2.png" },
-    { name: "Not to Be Reproduced", year: 1937, image: "/Not to Be Reproduced.jpg" },
+    {
+        name: "The Human Condition",
+        year: 1933,
+        image: "/The Human Condition-2.png",
+        description: [
+            "After returning to <strong>Brussels</strong>, Magritte focused on clarity and carefully staged scenes that <strong>probe perception</strong>. His paintings from this time favor calm compositions with a quietly puzzling logic.",
+            "<strong>The Human Condition (1933)</strong> shows this directly: a painted canvas placed before a window aligns perfectly with the view beyond, suggesting that what we call “reality” is always framed and interpreted.",
+        ],
+    },
+    {
+        name: "The Rape",
+        year: 1934,
+        image: "/The Rape-2.png",
+        description: [
+            "In the <strong>mid-1930s Magritte balanced narrative suggestion</strong> with formal restraint. His Belgian works from this time often imply tension or transgression through carefully composed, everyday scenes.",
+            "<strong>The Rape (1934)</strong> composes a quiet exterior scene that hints at violence and intrusion through suggestion rather than depiction; the painting’s restraint makes the implied act more disturbing by leaving it mostly unseen.",
+        ],
+    },
+    {
+        name: "The Therapist",
+        year: 1937,
+        image: "/The therapist-2.png",
+        description: [
+            "Magritte’s Belgian works often probe inner states through restrained imagery. He favored simple, symbolic objects that hint at hidden emotions rather than spelling them out.",
+            "<strong>The Therapist (1937)</strong> uses a wrapped head and a caged bird to suggest protection, silence, and constraint—a quiet study of concealment and the limits of understanding another mind.",
+        ],
+    },
+    {
+        name: "Time Transfixed",
+        year: 1938,
+        image: "/Time Transfixed-2.png",
+        description: [
+            "In Belgium, Magritte developed an <strong>architectural approach to composition</strong>—clean interiors where a single unexpected element quietly unsettles the scene. The controlled setting lets the <strong>oddity speak without spectacle.</strong>",
+            "<strong>Time Transfixed (1938)</strong> places a locomotive in a living room fireplace, turning a familiar interior into a deliberate visual paradox that asks the viewer to accept the impossible as matter-of-fact.",
+        ],
+    },
+    {
+        name: "Not to Be Reproduced",
+        year: 1937,
+        image: "/Not to Be Reproduced.jpg",
+        description: [
+            "During this period Magritte frequently questioned identity and reflection. He staged scenes that used mirrors and doubles to unsettle expectations about <strong>likeness and self-image.</strong>",
+            "<strong>Not to Be Reproduced (1937)</strong> depicts a man facing a mirror while the reflection shows only the back of his head—a calm but powerful riddle about recognition and the impossibility of perfect reproduction.",
+        ],
+    },
 ];
 
 export default function ReturnToBelgium() {
@@ -89,7 +129,10 @@ export default function ReturnToBelgium() {
 
     return (
         <>
-            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
+            <div
+                className={`${styles.page} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         {isSliding && (
@@ -181,18 +224,16 @@ export default function ReturnToBelgium() {
                                 ) : (
                                     <>
                                         <h1>Return to Belgium</h1>
-                                        <p>
-                                            In 1930, Magritte returned to Brussels
-                                            and established his permanent studio
-                                            there, where he would create many of
-                                            his most iconic works.
-                                        </p>
-                                        <p>
-                                            This period marked a significant shift
-                                            in his artistic development and
-                                            solidified his place in the Surrealist
-                                            movement.
-                                        </p>
+                                        {currentArtwork.description.map(
+                                            (text, index) => (
+                                                <p
+                                                    key={index}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: text,
+                                                    }}
+                                                />
+                                            )
+                                        )}
                                         <div className={styles.artworkCarousel}>
                                             <button
                                                 className={styles.carouselArrow}
