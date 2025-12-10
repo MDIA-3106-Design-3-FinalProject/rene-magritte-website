@@ -138,7 +138,8 @@ export default function Room() {
                     </h2>
                     <p className={styles.popupMessage}>
                         Choose your own way to explore Rene's work: <br />
-                        1. Click on the art frames; <br />
+                        1. Click and Drag within the room and select an art
+                        frames; <br />
                         2. Use the next/back Buttons;
                         <br />
                         3. Or select the year on the timeline at the top.
