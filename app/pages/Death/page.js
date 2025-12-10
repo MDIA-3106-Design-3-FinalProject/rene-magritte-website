@@ -172,17 +172,15 @@ export default function Death() {
                                     </>
                                 ) : (
                                     <>
-                                        <h1>Death</h1>
+                                        <h1>The Beginning of the End</h1>
                                         <p>
-                                            René Magritte passed away on August 15,
-                                            1967, in Brussels, leaving behind a
-                                            legacy that continues to inspire and
-                                            challenge our perception of reality.
+                                            In the final years of his life, Magritte continued to work with clarity and determination, refining the visual language he had spent decades developing.
                                         </p>
                                         <p>
-                                            His surrealist vision remains one of the
-                                            most influential in modern art, forever
-                                            changing how we see the world around us.
+                                            Magritte passed away on <strong>August 15, 1967, in Brussels</strong>, the city where he had lived and worked for most of his life. His death marked the <strong>end of a long career grounded not in spectacle</strong>, but in thoughtful, deliberate exploration of the mysteries hidden in the everyday world.
+                                        </p>
+                                        <p>
+                                            <strong>His legacy only grew after his passing.</strong> Exhibitions, scholarship, and popular culture continued to bring his work to new audiences, establishing Magritte as <strong>one of the most influential figures in modern art</strong>.
                                         </p>
                                     </>
                                 )}

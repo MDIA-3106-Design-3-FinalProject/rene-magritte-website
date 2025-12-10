@@ -11,9 +11,33 @@ import TimelineBar from "@/app/components/TimelineBar/TimelineBar";
 import TextBox from "@/app/components/TextBox/TextBox";
 
 const artworks = [
-    { name: "Forethought", year: 1943, image: "/Forethought-2.png" },
-    { name: "The Clearing", year: 1943, image: "/The Clearing.jpeg" },
-    { name: "Lyricism", year: 1943, image: "/Lyricism-2.png" },
+    {
+        name: "Forethought",
+        year: 1943,
+        image: "/Forethought-2.png",
+        description: [
+            "He brought a sense of gentleness to his imagery, using warm, blended tones to give even strange elements a softer, <strong>more approachable feeling.</strong> His compositions became lighter while still maintaining his trademark sense of quiet intrigue.",
+            "<strong>Forethought (1943)</strong> captures this mood. The painting pairs Magritte’s symbolic language with a warm palette, creating an image that feels contemplative yet bright.",
+        ],
+    },
+    {
+        name: "The Clearing",
+        year: 1944,
+        image: "/The Clearing.jpeg",
+        description: [
+            "Magritte’s Belgian works often probe inner states through restrained imagery. He favored simple, symbolic objects that hint at hidden emotions rather than spelling them out.",
+            "<strong>The Clearing (1944)</strong> shows this balance clearly. Its glowing, pastoral setting reflects Magritte’s temporary embrace of serenity and warmth.",
+        ],
+    },
+    {
+        name: "Lyricism",
+        year: 1947,
+        image: "/Lyricism-2.png",
+        description: [
+            "During his Renoir Period, Magritte turned toward <strong>brighter colors</strong> and a softer, more atmospheric approach. This phase was shaped by his desire to bring <strong>warmth and optimism</strong> into his work during a difficult era.",
+            "<strong>Lyricism (1947)</strong> reflects this shift. With its glowing hues and inviting composition, the painting reveals how Magritte temporarily embraced warmth as a form of expressive clarity.",
+        ],
+    },
 ];
 
 export default function RenoirAndVachePeriods() {
@@ -87,7 +111,10 @@ export default function RenoirAndVachePeriods() {
 
     return (
         <>
-            <div className={`${styles.page} ${isTransitioning ? styles.fadeOut : ''}`}>
+            <div
+                className={`${styles.page} ${
+                    isTransitioning ? styles.fadeOut : ""
+                }`}>
                 <div className={styles.loadingContainer}>
                     <div className={styles.imageWrapper}>
                         {isSliding && (
@@ -179,17 +206,16 @@ export default function RenoirAndVachePeriods() {
                                 ) : (
                                     <>
                                         <h1>Renoir and Vache Periods</h1>
-                                        <p>
-                                            During the 1940s, Magritte experimented
-                                            with different styles, including his
-                                            "Renoir Period" and "Vache Period,"
-                                            exploring new artistic directions.
-                                        </p>
-                                        <p>
-                                            These periods showcased his versatility
-                                            and willingness to challenge his own
-                                            artistic conventions.
-                                        </p>
+                                        {currentArtwork.description.map(
+                                            (text, index) => (
+                                                <p
+                                                    key={index}
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: text,
+                                                    }}
+                                                />
+                                            )
+                                        )}
                                         <div className={styles.artworkCarousel}>
                                             <button
                                                 className={styles.carouselArrow}
@@ -258,4 +284,3 @@ export default function RenoirAndVachePeriods() {
         </>
     );
 }
-
